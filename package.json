@@ -1,0 +1,20 @@
+{
+  "name": "picmix",
+  "version": "1.0.0",
+  "description": "Bilderverzeichnisse abmischen gemäße Zeitstempel (mit Offset)",
+  "main": "index.js",
+  "scripts": {
+    "read": "node js/read.js",
+    "mix": "node js/mix.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogerknop/picmix.git"
+  },
+  "author": "Roger Knop",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.2.4",
+    "exif": "^0.6.0"
+  }
+}

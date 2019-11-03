@@ -1,0 +1,44 @@
+// In den Konfigurations JSON sind Kommentare erlaubt!
+// In local.json können Attribute nach Bedarf überschrieben werden.
+{
+    //Output Verzeichnis, in dem der Mix erstellt wird
+    "master_path": "c:/temp/picmix",
+    //Output Verzeichnis, in dem der Mix erstellt wird
+    "output_mix_path": "./mix",
+    //Präfix für die Bilder im Mix
+    "mix_praefix": "TestMix_",
+    //Pfas zum Einlesen der Collections für das READ Script
+    "read_path": "./",
+    // Einstellungen für die Bilder Collections - Dient als Vorlage für config/local.json
+    "collections": [
+        {
+            "name": "Rogis Handy",
+            "path": "./handy",
+            "timestamp_type": "exif",
+            "offset_auto": {
+                "master": true,
+                "reference_pics": [
+                    { "ref_name": "Rogis Cam", "timestamp_reference_pic": "refpic.jpg" }
+                ]
+            }
+        },
+        {
+            "name": "Rogis Cam",
+            "path": "./sony_kamera",
+            "timestamp_type": "exif",
+            "offset_auto": {
+                "master": false,
+                "timestamp_reference_pic": "refpic.jpg"
+            }
+        },
+        {
+            "name": "Rogis GoPro",
+            "path": "c:/temp/picmix/gopro",
+            "timestamp_type": "mp4",
+            "offset_manual": {
+                "offset_date": "-0000-00-00",
+                "offset_time": "+00:01:15"
+            }
+        }
+    ]
+}
