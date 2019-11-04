@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "config": "^3.2.4",
-    "exif": "^0.6.0"
+    "exif": "^0.6.0",
+    "node-mediainfo": "^1.0.3"
   }
 }

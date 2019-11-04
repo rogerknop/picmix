@@ -3,6 +3,8 @@
 {
     //Output Verzeichnis, in dem der Mix erstellt wird
     "master_path": "c:/temp/picmix",
+    //Timezone: Exif hat meistens keine und Videos oft in UTC
+    "timezone": "CET",
     //Output Verzeichnis, in dem der Mix erstellt wird
     "output_mix_path": "./mix",
     //Präfix für die Bilder im Mix
