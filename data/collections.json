@@ -1,0 +1,297 @@
+[
+  {
+    "path": "c:/FotoMix/Bilder",
+    "files": [
+      "c:\\FotoMix\\Bilder\\00007XTR_00007_BURST20170225192718.jpg",
+      "c:\\FotoMix\\Bilder\\00004XTR_00004_BURST20170309135643.jpg",
+      "c:\\FotoMix\\Bilder\\Burst_Cover_GIF_Action_20170207182543.gif",
+      "c:\\FotoMix\\Bilder\\00012IMG_00012_BURST20170225192728.jpg",
+      "c:\\FotoMix\\Bilder\\images.jpg",
+      "c:\\FotoMix\\Bilder\\IMG_20170205_091151.jpg"
+    ],
+    "fileInfos": [
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Bilder\\00007XTR_00007_BURST20170225192718.jpg",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2017:02:25 19:27:19"
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Bilder\\00004XTR_00004_BURST20170309135643.jpg",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2017:03:09 13:56:46"
+      },
+      {
+        "status": "ERROR: Unknown Format GIF",
+        "filename": "c:\\FotoMix\\Bilder\\Burst_Cover_GIF_Action_20170207182543.gif",
+        "found": true,
+        "format": "GIF"
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Bilder\\00012IMG_00012_BURST20170225192728.jpg",
+        "found": true,
+        "format": "JPEG"
+      },
+      {
+        "status": "ERROR: Exif not found",
+        "filename": "c:\\FotoMix\\Bilder\\images.jpg",
+        "found": true,
+        "format": "JPEG"
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Bilder\\IMG_20170205_091151.jpg",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2017:02:05 09:11:51"
+      }
+    ],
+    "fileCount": 6
+  },
+  {
+    "path": "c:/FotoMix/Bilder2",
+    "files": [
+      "c:\\FotoMix\\Bilder2\\00002IMG_00002_BURST20170521112052.jpg",
+      "c:\\FotoMix\\Bilder2\\FB_IMG_1494456288158.jpg",
+      "c:\\FotoMix\\Bilder2\\FB_IMG_1494623598661.jpg",
+      "c:\\FotoMix\\Bilder2\\IMG_20170314_112207.jpg",
+      "c:\\FotoMix\\Bilder2\\IMG_20170314_103913.jpg",
+      "c:\\FotoMix\\Bilder2\\Burst_Cover_GIF_Action_20170521124941.gif"
+    ],
+    "fileInfos": [
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Bilder2\\00002IMG_00002_BURST20170521112052.jpg",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2017:05:21 11:20:53"
+      },
+      {
+        "status": "ERROR: Exif not found",
+        "filename": "c:\\FotoMix\\Bilder2\\FB_IMG_1494456288158.jpg",
+        "found": true,
+        "format": "JPEG"
+      },
+      {
+        "status": "ERROR: Exif not found",
+        "filename": "c:\\FotoMix\\Bilder2\\FB_IMG_1494623598661.jpg",
+        "found": true,
+        "format": "JPEG"
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Bilder2\\IMG_20170314_112207.jpg",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2017:03:14 11:22:08"
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Bilder2\\IMG_20170314_103913.jpg",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2017:03:14 10:39:13"
+      },
+      {
+        "status": "ERROR: Unknown Format GIF",
+        "filename": "c:\\FotoMix\\Bilder2\\Burst_Cover_GIF_Action_20170521124941.gif",
+        "found": true,
+        "format": "GIF"
+      }
+    ],
+    "fileCount": 6
+  },
+  {
+    "path": "c:/FotoMix/cam-foto",
+    "files": [
+      "c:\\FotoMix\\cam-foto\\Magic_2019_10_10 08_30_58_013.JPG",
+      "c:\\FotoMix\\cam-foto\\Magic_2019_10_10 08_52_09_016.JPG"
+    ],
+    "fileInfos": [
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\cam-foto\\Magic_2019_10_10 08_30_58_013.JPG",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2019:10:10 08:30:58"
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\cam-foto\\Magic_2019_10_10 08_52_09_016.JPG",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2019:10:10 08:52:09"
+      }
+    ],
+    "fileCount": 2
+  },
+  {
+    "path": "c:/FotoMix/cam-rad",
+    "files": [
+      "c:\\FotoMix\\cam-rad\\Magic_2019_10_11 10_21_50_003.MP4"
+    ],
+    "fileInfos": [
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\cam-rad\\Magic_2019_10_11 10_21_50_003.MP4",
+        "found": true,
+        "format": "MPEG-4",
+        "dateTaken": [
+          "UTC 2014-01-05 17:04:50"
+        ]
+      }
+    ],
+    "fileCount": 1
+  },
+  {
+    "path": "c:/FotoMix/cam-video",
+    "files": [
+      "c:\\FotoMix\\cam-video\\Magic_2019_10_10 15_04_53_002.MTS"
+    ],
+    "fileInfos": [
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\cam-video\\Magic_2019_10_10 15_04_53_002.MTS",
+        "found": true,
+        "format": "BDAV",
+        "dateTaken": [
+          "UTC 2019-10-18 06:51:08.000"
+        ]
+      }
+    ],
+    "fileCount": 1
+  },
+  {
+    "path": "c:/FotoMix/Celebrate",
+    "files": [
+      "c:\\FotoMix\\Celebrate\\Test_1.jpg"
+    ],
+    "fileInfos": [
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Celebrate\\Test_1.jpg",
+        "found": true,
+        "format": "JPEG"
+      }
+    ],
+    "fileCount": 1
+  },
+  {
+    "path": "c:/FotoMix/Gopro",
+    "files": [
+      "c:\\FotoMix\\Gopro\\NZ_2017_02_07 06_31_45_GP0472.JPG",
+      "c:\\FotoMix\\Gopro\\NZ_2017_02_08 07_48_22_GP0476.JPG",
+      "c:\\FotoMix\\Gopro\\NZ_2017_02_08 15_17_59_GP0481.JPG",
+      "c:\\FotoMix\\Gopro\\NZ_2017_02_10 06_05_37_GP0487.JPG",
+      "c:\\FotoMix\\Gopro\\NZ_2017_02_08 15_17_50_GP0479.JPG"
+    ],
+    "fileInfos": [
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Gopro\\NZ_2017_02_07 06_31_45_GP0472.JPG",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2017:02:07 06:31:45"
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Gopro\\NZ_2017_02_08 07_48_22_GP0476.JPG",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2017:02:08 07:48:22"
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Gopro\\NZ_2017_02_08 15_17_59_GP0481.JPG",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2017:02:08 15:17:59"
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Gopro\\NZ_2017_02_10 06_05_37_GP0487.JPG",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2017:02:10 06:05:37"
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Gopro\\NZ_2017_02_08 15_17_50_GP0479.JPG",
+        "found": true,
+        "format": "JPEG",
+        "dateTaken": "2017:02:08 15:17:50"
+      }
+    ],
+    "fileCount": 5
+  },
+  {
+    "path": "c:/FotoMix/Gopro-Video",
+    "files": [
+      "c:\\FotoMix\\Gopro-Video\\GOPR6396.MP4",
+      "c:\\FotoMix\\Gopro-Video\\GOPR6427.MP4"
+    ],
+    "fileInfos": [
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Gopro-Video\\GOPR6396.MP4",
+        "found": true,
+        "format": "MPEG-4",
+        "dateTaken": [
+          "UTC 2017-03-03 10:13:57"
+        ]
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\Gopro-Video\\GOPR6427.MP4",
+        "found": true,
+        "format": "MPEG-4",
+        "dateTaken": [
+          "UTC 2017-03-08 14:57:22"
+        ]
+      }
+    ],
+    "fileCount": 2
+  },
+  {
+    "path": "c:/FotoMix/VideoSonstige",
+    "files": [
+      "c:\\FotoMix\\VideoSonstige\\Snapchat-1288361829.mp4",
+      "c:\\FotoMix\\VideoSonstige\\VID_20170509_120955.mp4",
+      "c:\\FotoMix\\VideoSonstige\\VID_20170426_142717.mp4"
+    ],
+    "fileInfos": [
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\VideoSonstige\\Snapchat-1288361829.mp4",
+        "found": true,
+        "format": "MPEG-4",
+        "dateTaken": [
+          "UTC 2017-04-03 00:14:23"
+        ]
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\VideoSonstige\\VID_20170509_120955.mp4",
+        "found": true,
+        "format": "MPEG-4",
+        "dateTaken": [
+          "UTC 2017-05-09 00:09:55"
+        ]
+      },
+      {
+        "status": "OK",
+        "filename": "c:\\FotoMix\\VideoSonstige\\VID_20170426_142717.mp4",
+        "found": true,
+        "format": "MPEG-4",
+        "dateTaken": [
+          "UTC 2017-04-26 02:27:17"
+        ]
+      }
+    ],
+    "fileCount": 3
+  }
+]

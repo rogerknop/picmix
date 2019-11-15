@@ -7,8 +7,15 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Start Mix",
             "program": "${workspaceFolder}\\js\\mix.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "console": "externalTerminal",
+            "name": "Start Read",
+            "program": "${workspaceFolder}\\js\\read.js"
         }
     ]
 }
