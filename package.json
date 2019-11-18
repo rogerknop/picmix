@@ -16,7 +16,6 @@
   "dependencies": {
     "clear-any-console": "^1.16.0",
     "cli-progress": "^3.4.0",
-    "config": "^3.2.4",
     "exif": "^0.6.0",
     "fs-hard-drive": "^1.0.0",
     "inquirer": "^7.0.0",

@@ -1,5 +1,5 @@
 /*
-- read_path oder master_path - offen - einlesen und config einlesen und gemäß eingelesenen Werten anpassen und ausgeben zum kopieren - evtl. vorlage datei erstellen
+  Erstellen der Konfiguration und Daten Files
 */
 
 const Globals = require('./globals');
@@ -8,7 +8,6 @@ const Collection = require('./collection');
 
 const fs = require('fs')
 const clearConsole = require('clear-any-console');
-var config = require('config');
 const drivelist = require('fs-hard-drive').lsDevices;
 var { from } = require('rxjs');
 const cliProgress = require('cli-progress');
@@ -16,12 +15,17 @@ const cliProgress = require('cli-progress');
 const inquirer = require('inquirer');
 inquirer.registerPrompt('directory', require('inquirer-select-directory'));
 
-
+var appConfig = Globals.readAppConfig();
+var config = Globals.readEventControl(appConfig.LastName);
 var observableQuestions;
+
+var BaseDirSelectionTypeDefault;
+
 
 //****************************************************************************************************
 async function main() {
-  // Drive List ermitteln
+  var allEvents = Globals.getAllEvents(true);
+  
   var drives = await drivelist();
   drives = drives.map((record) => {
     return record.caption;
@@ -34,11 +38,43 @@ async function main() {
   console.log('Das Hauptverzeichnis entspricht in der Konfiguration "./"');
   console.log('');
 
-  var questions = [{
+  var questions = 
+  [
+    {
+      type: 'list',
+      name: 'Event',
+      message: 'Bestehendes oder neues Event?',
+      choices: allEvents,
+      default: config.Name,      
+    },
+    {
+      type: 'input',
+      name: 'Name',
+      message: "Name (eindeutiger Name für die Konfiguration- und Datendateien)",
+      default: function(currentAnswer) { return config["Name"]; },
+      filter: function (value) {
+        value = value.replace(/\W+/g,"");
+        return value;
+      },
+      validate: function (value) {
+        //Check Name is not empty
+        if (value==="") {
+          return 'Der Name darf nicht leer sein!';
+        }
+        else {
+          return true;
+        }
+      },
+      when: function (answers) {
+        return answers.Event === Globals.NewEvent;
+      }    
+    },
+    {
       type: 'list',
       name: 'BaseDirSelectionType',
       message: 'Hauptverzeichnis auswählen oder manuell eingeben?',
       choices: ['Auswahl', 'Eingabe'],
+      default: function(currentAnswer) { return BaseDirSelectionTypeDefault; },
       filter: function (val) {
         return val.toLowerCase();
       }
@@ -50,7 +86,7 @@ async function main() {
       choices: drives,
       when: function (answers) {
         return answers.BaseDirSelectionType == 'auswahl';
-      },
+      }
     },
     {
       type: 'directory',
@@ -65,7 +101,7 @@ async function main() {
       type: 'input',
       name: 'BaseDir',
       message: "Hauptverzeichnis manuell eingeben?",
-      default: "c:/FotoMix",
+      default: function(currentAnswer) { return config["Base_Directory"]; },
       validate: function (value) {
         //Check if path exists
         if (fs.existsSync(value)) {
@@ -84,19 +120,19 @@ async function main() {
       name: 'OutputTimezone',
       message: "Zeitzone für den Foto Mix?",
       choices: ts.tzchoices,
-      default: "(UTC+01:00) Berlin"
+      default: function(currentAnswer) { return config["Output_Timezone"]; }
     },
     {
       type: 'input',
       name: 'OutputMixDir',
       message: "Unterverzeichnis im Hauptverzeichnis für den FotoMix (Achtung! Wird überschrieben)?",
-      default: "Mix"
+      default: function(currentAnswer) { return config["Output_Mix_Path"]; }
     },
     {
       type: 'input',
       name: 'Praefix',
       message: "Präfix für die Dateien im Mix Verzeichnis?",
-      default: "UrlaubsMix_"
+      default: function(currentAnswer) { return config["Mix_Praefix"]; }
     }
   ];
 
@@ -104,6 +140,23 @@ async function main() {
 
   inquirer.prompt(observableQuestions).ui.process.subscribe(
     function (currentAnswer) {
+
+      // Event => Name 
+      if (currentAnswer.name == "Event") {
+        config = Globals.readEventControl(currentAnswer.answer);
+        if (currentAnswer.answer === Globals.NewEvent) {
+          config.Name = "";
+        }
+        else {
+          BaseDirSelectionTypeDefault = Globals.readEventControlExists(appConfig.LastName) ? "Eingabe" : "Auswahl";
+        }
+      }
+
+      // Name 
+      if (currentAnswer.name == "Name") {
+        config = Globals.readEventControl(currentAnswer.answer);
+        BaseDirSelectionTypeDefault = Globals.readEventControlExists(appConfig.LastName) ? "Eingabe" : "Auswahl";
+      }
 
       // Pfadauswahl gemäß Drive Anwort anpassen
       if (currentAnswer.name == "Drive") {
@@ -202,24 +255,12 @@ async function finalizeConfig() {
   //console.log( timeZone + " -> " + date.toLocaleString('de-DE', {hour12: false, timeZone: timeZone })  );
 
   config["Collections"] = collections;
-  
-  //Write to file config/active.json 
-  var newConfigString = JSON.stringify(config, null, "  ");
-  fs.writeFile("./config/active.json", newConfigString, function(err) {
-    if(err) {
-        return console.log(err);
-    }
-    console.log("\n\nDie Konfigurationsdatei 'config/active.json' wurde erstellt!");
-  }); 
 
-  //Write Collection and Files 
-  var collectionInstancesString = JSON.stringify(collectionInstances, null, "  ");
-  fs.writeFile("./data/collections.json", collectionInstancesString, function(err) {
-    if(err) {
-        return console.log(err);
-    }
-    console.log("Die Kollectionen mit den Dateien wurden in die Datei 'data/collections.json' geschrieben!");
-  }); 
+  appConfig.LastName = config["Name"];
+
+  Globals.writeEventControl(config);
+  Globals.writeAppConfig(appConfig);
+  Globals.writeEventData(config["Name"], collectionInstances);
 
 }
 
