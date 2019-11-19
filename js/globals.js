@@ -124,7 +124,7 @@ module.exports = {
             if(err) {
                 return console.log(err);
             }
-            console.log("\n\nDie Datendatei '" + file + "' wurde erstellt!");
+            console.log("\nDie Control-Datei '" + file + "' wurde erstellt!");
         }); 
     },
 
@@ -145,7 +145,7 @@ module.exports = {
             if(err) {
                 return console.log(err);
             }
-            console.log("\n\nDie Datendatei '" + file + "' wurde erstellt!");
+            console.log("\nDie Datendatei '" + file + "' wurde erstellt!");
         }); 
     }
 }

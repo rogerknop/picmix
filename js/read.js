@@ -5,6 +5,7 @@
 const Globals = require('./globals');
 const ts = require('./timestamp')
 const Collection = require('./collection');
+const colors = require('colors/safe');
 
 const fs = require('fs')
 const clearConsole = require('clear-any-console');
@@ -138,6 +139,7 @@ async function main() {
 
   observableQuestions = from(questions);
 
+  
   inquirer.prompt(observableQuestions).ui.process.subscribe(
     function (currentAnswer) {
 
@@ -148,6 +150,7 @@ async function main() {
           config.Name = "";
         }
         else {
+          console.log("\n" + colors.red.bold("ACHTUNG! Die Kollektionen werden anhand der gelesenen Daten überschrieben!") + "\n");
           BaseDirSelectionTypeDefault = Globals.readEventControlExists(appConfig.LastName) ? "Eingabe" : "Auswahl";
         }
       }
@@ -231,7 +234,7 @@ async function finalizeConfig() {
     }
   });
 
-  //TODO: Timezone & Name/Device & TimestampType ermitteln (solange dateien durchsuchen, bis was gefunden)
+  // Kollektionen ermitteln mit Anzahl Dateien
   var collectionInstances = [];
   var totalFilesCount = 0;
   for (const collidx in collections) {
@@ -241,26 +244,12 @@ async function finalizeConfig() {
     totalFilesCount += collection.fileCount;
   }
 
-  const progressbar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
-  progressbar.start(totalFilesCount, 0);
-  var doneFilesCount = 0;
-  for (const collidx in collectionInstances) {
-    await collectionInstances[collidx].analyzeCollection(progressbar, doneFilesCount);
-    doneFilesCount += collectionInstances[collidx].fileCount;  
-  }
-  progressbar.stop();
-
-  var date = new Date();
-  var timeZone = ts.tzlookup[config.Output_Timezone].value;
-  //console.log( timeZone + " -> " + date.toLocaleString('de-DE', {hour12: false, timeZone: timeZone })  );
-
   config["Collections"] = collections;
 
   appConfig.LastName = config["Name"];
 
   Globals.writeEventControl(config);
   Globals.writeAppConfig(appConfig);
-  Globals.writeEventData(config["Name"], collectionInstances);
 
 }
 
