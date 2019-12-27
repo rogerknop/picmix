@@ -17,7 +17,7 @@ const inquirer = require('inquirer');
 inquirer.registerPrompt('directory', require('inquirer-select-directory'));
 
 var appConfig = Globals.readAppConfig();
-var config = Globals.readEventControl(appConfig.LastName);
+var control = Globals.readEventControl(appConfig.LastName);
 var observableQuestions;
 
 var BaseDirSelectionTypeDefault;
@@ -46,13 +46,13 @@ async function main() {
       name: 'Event',
       message: 'Bestehendes oder neues Event?',
       choices: allEvents,
-      default: config.Name,      
+      default: control.Name,      
     },
     {
       type: 'input',
       name: 'Name',
       message: "Name (eindeutiger Name für die Konfiguration- und Datendateien)",
-      default: function(currentAnswer) { return config["Name"]; },
+      default: function(currentAnswer) { return control["Name"]; },
       filter: function (value) {
         value = value.replace(/\W+/g,"");
         return value;
@@ -102,7 +102,7 @@ async function main() {
       type: 'input',
       name: 'BaseDir',
       message: "Hauptverzeichnis manuell eingeben?",
-      default: function(currentAnswer) { return config["Base_Directory"]; },
+      default: function(currentAnswer) { return control["Base_Directory"]; },
       validate: function (value) {
         //Check if path exists
         if (fs.existsSync(value)) {
@@ -121,19 +121,19 @@ async function main() {
       name: 'OutputTimezone',
       message: "Zeitzone für den Foto Mix?",
       choices: ts.tzchoices,
-      default: function(currentAnswer) { return config["Output_Timezone"]; }
+      default: function(currentAnswer) { return control["Output_Timezone"]; }
     },
     {
       type: 'input',
       name: 'OutputMixDir',
       message: "Unterverzeichnis im Hauptverzeichnis für den FotoMix (Achtung! Wird überschrieben)?",
-      default: function(currentAnswer) { return config["Output_Mix_Path"]; }
+      default: function(currentAnswer) { return control["Output_Mix_Path"]; }
     },
     {
       type: 'input',
       name: 'Praefix',
       message: "Präfix für die Dateien im Mix Verzeichnis?",
-      default: function(currentAnswer) { return config["Mix_Praefix"]; }
+      default: function(currentAnswer) { return control["Mix_Praefix"]; }
     }
   ];
 
@@ -145,9 +145,9 @@ async function main() {
 
       // Event => Name 
       if (currentAnswer.name == "Event") {
-        config = Globals.readEventControl(currentAnswer.answer);
+        control = Globals.readEventControl(currentAnswer.answer);
         if (currentAnswer.answer === Globals.NewEvent) {
-          config.Name = "";
+          control.Name = "";
         }
         else {
           console.log("\n" + colors.red.bold("ACHTUNG! Die Kollektionen werden anhand der gelesenen Daten überschrieben!") + "\n");
@@ -157,7 +157,7 @@ async function main() {
 
       // Name 
       if (currentAnswer.name == "Name") {
-        config = Globals.readEventControl(currentAnswer.answer);
+        control = Globals.readEventControl(currentAnswer.answer);
         BaseDirSelectionTypeDefault = Globals.readEventControlExists(appConfig.LastName) ? "Eingabe" : "Auswahl";
       }
 
@@ -177,27 +177,27 @@ async function main() {
             obs.basePath = currentAnswer.answer;
           }
         });
-        config["Base_Directory"] = currentAnswer.answer;
+        control["Base_Directory"] = currentAnswer.answer;
       }
 
       // BaseDir Inputfeld
       if (currentAnswer.name == "BaseDir") {
-        config["Base_Directory"] = currentAnswer.answer;
+        control["Base_Directory"] = currentAnswer.answer;
       }
 
       // Output-Timezone
       if (currentAnswer.name == "OutputTimezone") {
-        config["Output_Timezone"] = currentAnswer.answer;
+        control["Output_Timezone"] = currentAnswer.answer;
       }
 
       // Output-Mix-Path
       if (currentAnswer.name == "OutputMixDir") {
-        config["Output_Mix_Path"] = currentAnswer.answer;
+        control["Output_Mix_Path"] = currentAnswer.answer;
       }
 
       //Mix-Praefix
       if (currentAnswer.name == "Praefix") {
-        config["Mix_Praefix"] = currentAnswer.answer;
+        control["Mix_Praefix"] = currentAnswer.answer;
       }
 
 
@@ -206,8 +206,8 @@ async function main() {
       console.log('Error: ', err);
     },
     function () {
-      config["Base_Directory"] = config["Base_Directory"].replace(/\\\\/, "/");
-      config["Base_Directory"] = config["Base_Directory"].replace(/\\/, "/");
+      control["Base_Directory"] = control["Base_Directory"].replace(/\\\\/, "/");
+      control["Base_Directory"] = control["Base_Directory"].replace(/\\/, "/");
 
       finalizeConfig();
     }
@@ -218,7 +218,7 @@ async function main() {
 //****************************************************************************************************
 async function finalizeConfig() {
   console.log("\nDie Kollektionen werden ermittelt!");
-  var subfolders = getDirectories(config["Base_Directory"]);  
+  var subfolders = getDirectories(control["Base_Directory"]);  
   //console.log(subfolders);
 
   var collections = subfolders.map( (path) => {
@@ -226,7 +226,7 @@ async function finalizeConfig() {
       "Name": path,
       "Directory": "./" + path,
       "Timestamp_Type": "",
-      "Input_Timezone": "CET",
+      "Input_Timezone": "Europe/Berlin",
       "Offset_Auto_Reference_Pic": "", 
       "Offset_Auto_Reference_Pic_Master": "",
       "Offset_Manual_Date": "+0000-00-00",
@@ -238,17 +238,17 @@ async function finalizeConfig() {
   var collectionInstances = [];
   var totalFilesCount = 0;
   for (const collidx in collections) {
-    var collection = new Collection(config["Base_Directory"], collections[collidx].Directory);
-    collection = await collection.readCollection();   
+    var collection = new Collection(control, collections[collidx], collections[collidx].Directory);
+    await collection.readCollection();   
     collectionInstances.push(collection);
-    totalFilesCount += collection.fileCount;
+    totalFilesCount += collection.FileCount;
   }
 
-  config["Collections"] = collections;
+  control["Collections"] = collections;
 
-  appConfig.LastName = config["Name"];
+  appConfig.LastName = control["Name"];
 
-  Globals.writeEventControl(config);
+  Globals.writeEventControl(control);
   Globals.writeAppConfig(appConfig);
 
 }

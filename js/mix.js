@@ -1,68 +1,112 @@
 /*
-
-- npm cli-progress
-
-Threads - Worker
-- npm worker_threads - node V12 ist notwendig! Oder mit parameter starten
-    https://www.heise.de/developer/artikel/Features-von-uebermorgen-Worker-Threads-in-Node-js-4354189.html
-    https://nodesource.com/blog/worker-threads-nodejs/
-
-plausis:
-- path darf nicht leer sein
-- offset_auto und offset_manual nicht beides gefüllt
-- name eindeutig
-- path existiert
-
-Erst manuell Offset berechnen, dann über RefPic
-
+  Analyse der Konfiguration und Daten Files
 */
 
 const Globals = require('./globals');
 const Collection = require('./collection');
-const FileInfo = require('./fileinfo');
-const mediainfo = require('node-mediainfo');
+const colors = require('colors/safe');
 
+const fs = require('fs-extra')
+const clearConsole = require('clear-any-console');
+const cliProgress = require('cli-progress');
 
+const inquirer = require('inquirer');
 
+var appConfig = Globals.readAppConfig();
+var control = Globals.readEventControl(appConfig.LastName);
+
+//****************************************************************************************************
 async function main() {
-    var collection = new Collection('C:/Users/d022750/OneDrive/FotoMix');
-    
-    collection = await collection.readCollection();
-    
-    var files = await collection.getFiles();
-    
+    var allEvents = Globals.getAllEvents(false);
 
-    /*
-    var result1 = await mediainfo('C:/Users/d022750/OneDrive/FotoMix/VideoSonstige/VID_20170426_142717.mp4');
-    debug(result1.media.track[0].Format, result1.media.track[0].Encoded_Date)
-    var result2 = await mediainfo('C:/Users/d022750/OneDrive/FotoMix/Gopro-Video/GOPR6427.MP4');
-    debug(result2.media.track[0].Format, result2.media.track[0].Encoded_Date)
-    var result3 = await mediainfo('C:/Users/d022750/OneDrive/FotoMix/Bilder2/IMG_20170314_112207.jpg');
-    debug(result3.media.track[0].Format, result3.media.track[0].Encoded_Date)
-    var result4 = await mediainfo('C:/Users/d022750/OneDrive/FotoMix/cam-foto/Magic_2019_10_10 08_30_58_013.JPG');
-    debug(result4.media.track[0].Format, result4.media.track[0].Encoded_Date)
-    var result5 = await mediainfo('C:/Users/d022750/OneDrive/FotoMix/cam-video/Magic_2019_10_10 15_04_53_002.MTS');
-    debug(result5.media.track[0].Format, result5.media.track[0].Recorded_Date)
-    var result6 = await mediainfo('C:/Users/d022750/OneDrive/FotoMix/cam-rad/Magic_2019_10_11 10_21_50_003.MP4');
-    debug(result6.media.track[0].Format, result6.media.track[0].Encoded_Date)
-    */
-   
-   /*
-   var fileInfo;
-   fileInfo = await FileInfo.getFileInfo('C:/Users/d022750/OneDrive/FotoMix/VideoSonstige/VID_20170426_142717.mp4');
-   FileInfo.debugInfos(fileInfo);
-   fileInfo = await FileInfo.getFileInfo('C:/Users/d022750/OneDrive/FotoMix/Bilder2/IMG_20170314_112207.jpg');
-   FileInfo.debugInfos(fileInfo);
-   fileInfo = await FileInfo.getFileInfo('C:/Users/d022750/OneDrive/FotoMix/cam-foto/Magic_2019_10_10 08_30_58_013.JPG');
-   FileInfo.debugInfos(fileInfo);
-   fileInfo = await FileInfo.getFileInfo('C:/Users/d022750/OneDrive/FotoMix/cam-video/Magic_2019_10_10 15_04_53_002.MTS');
-   FileInfo.debugInfos(fileInfo);
-   */
-   
-   
-    //var exifData = await getExif();
-    //console.log("Exif Data: " + exifData)
+    clearConsole();
+    console.log('Willkommen zum PicMix Tooling zum Abmischen mehrere Foto/Video Kollektionen!');
+    console.log('----------------------------------------------------------------------------');
+    console.log('');
+
+    var questions = [{
+        type: 'list',
+        name: 'Event',
+        message: 'Welcher Event MIX soll erstellt werden?',
+        choices: allEvents,
+        default: control.Name,
+    }];
+
+    inquirer.prompt(questions)
+        .then(answers => {
+            control = Globals.readEventControl(answers.Event);
+            Globals.readEventData(appConfig.LastName);
+            mix();
+        });
 }
 
-main();
+//****************************************************************************************************
+async function mix() {
+    console.log("\nDer Event MIX wird erstellt!");
 
+    await fs.remove(control.Base_Directory +  "/" + control.Output_Mix_Path);
+
+    var collections = Globals.existingCollectionData;
+    var files = Globals.existingFileData;
+    
+    var totalFilesCount = 0;
+    for (const collkey in collections) {
+        totalFilesCount += collections[collkey].FileCount;
+    }
+
+    var success = 0;
+    var error = 0;
+    const progressbar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+    progressbar.start(totalFilesCount, 0);
+    var doneFilesCount = 0;
+    for (const collkey in collections) {
+        for (const filekey in files[collkey]) {
+            if (copyFile(totalFilesCount, doneFilesCount, control, files[collkey][filekey])) {
+                success++;
+            }
+            else {
+                error++;
+            }        
+            progressbar.update(++doneFilesCount);
+        }
+    }
+    progressbar.stop();
+    
+    appConfig.LastName = control["Name"];
+    Globals.writeAppConfig(appConfig);
+
+    if (error > 0) {
+        console.log("\n" + colors.red.bold(error + " Dateien wurden nicht kopiert!\n"));
+    }
+    if (success > 0) {
+        console.log("\n" + colors.green.bold(success + " Dateien wurden erfolgreich kopiert!\n"));
+    }
+
+    console.log("\n");
+}
+
+//****************************************************************************************************
+function copyFile(total, count, control, fileInfo) {
+    if ((fileInfo.Status !== Globals.status.ok) || (fileInfo.ComputedTimestamp.length != 19)) { return; }
+
+    var source = fileInfo.Filename;
+    var destination = control.Base_Directory +  "/" + control.Output_Mix_Path + "/" + control.Mix_Praefix;
+
+    destination += fileInfo.ComputedTimestamp.substr(0,4) + fileInfo.ComputedTimestamp.substr(5,2) + fileInfo.ComputedTimestamp.substr(8,2) + 
+                   "_" +
+                   fileInfo.ComputedTimestamp.substr(11,2) + fileInfo.ComputedTimestamp.substr(14,2) + fileInfo.ComputedTimestamp.substr(17,2) + 
+                   "_" +
+                   String(count).padStart(total.toString().length, '0') + 
+                   fileInfo.Filename.substr(-4);
+
+    try {
+        fs.copySync(source, destination);
+        return true;
+    } 
+    catch (err) {
+        return false;
+    }
+}
+
+//****************************************************************************************************
+main();

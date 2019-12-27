@@ -9,7 +9,7 @@ const ExifImage = require('exif').ExifImage;
 
 module.exports = {
     //****************************************************************************************************
-    getFileInfo: async function(filename) {    
+    getFileInfo: async function(collectionname, filename) {    
         var mediaInfo;
 
         try {
@@ -19,38 +19,69 @@ module.exports = {
             console.log('Rogi Error: ' + error.message);
         }
 
-        var fileInfo = {
-            status: Globals.status.fileNotFound,
-            filename: filename,
-            found: false,
-            format: ""
-        };
+        var fileInfo = {};
 
-        if (mediaInfo && mediaInfo.general && mediaInfo.general.commercial_name && mediaInfo.general.commercial_name[0]) {
-            fileInfo.format = mediaInfo.general.commercial_name[0];
+        if ((Globals.existingFileData[collectionname] !== undefined) && (Globals.existingFileData[collectionname][filename] !== undefined)) {
+            fileInfo = Globals.existingFileData[collectionname][filename];
+        }
+        else {
+            fileInfo = {
+                UseDateTaken: false,
+                Status: Globals.status.fileNotFound,
+                Filename: filename,
+                Found: false,
+                Format: "",
+                DateTaken: "",
+                Timezone: "",
+                ComputedTimestamp: ""
+            };
         }
 
-        if (fileInfo.format == "") {
-            fileInfo.status = Globals.status.mediaInfoNotFound;
+        if (fileInfo.debug) {
+            debugger;
+        }
+
+        if (fileInfo.UseDateTaken) {
+            fileInfo.Status = Globals.status.ok;
             return fileInfo;
         }
 
-        fileInfo.found = true;
-        fileInfo.status = Globals.status.ok;
+        if (mediaInfo && mediaInfo.general && mediaInfo.general.commercial_name && mediaInfo.general.commercial_name[0]) {
+            fileInfo.Format = mediaInfo.general.commercial_name[0];
+        }
+
+        if (fileInfo.Format == "") {
+            fileInfo.Status = Globals.status.mediaInfoNotFound;
+            return fileInfo;
+        }
+
+        fileInfo.Found = true;
+        fileInfo.Status = Globals.status.ok;
         
-        if ((fileInfo.format == "MPEG-4") || (fileInfo.format == "MOV")) {
-            return getDefaultInfo(mediaInfo, fileInfo);
+        try {
+            if ((fileInfo.Format == "MPEG-4") || (fileInfo.Format == "MOV")) {
+                    return getDefaultInfo(mediaInfo, fileInfo);
+            }
+            
+            if (fileInfo.Format == "JPEG") {
+                return getJpegInfo(mediaInfo, fileInfo);
+            }    
+            
+            if (fileInfo.Format == "GIF") {
+                return getGifInfo(mediaInfo, fileInfo);
+            }    
+            
+            if (fileInfo.Format == "BDAV") {
+                return getBdavInfo(mediaInfo, fileInfo);
+            }
+        }
+        catch (e) {
+            var msg = e.message ? e.message : e;
+            fileInfo.Status = Globals.status.formatReadDateException + " " + fileInfo.Format + " / Meldung: " + msg;
+            return fileInfo;
         }
 
-        if (fileInfo.format == "JPEG") {
-            return getJpegInfo(mediaInfo, fileInfo);
-        }    
-
-        if (fileInfo.format == "BDAV") {
-            return getBdavInfo(mediaInfo, fileInfo);
-        }
-
-        fileInfo.status = Globals.status.unknown + " " + fileInfo.format;
+        fileInfo.Status = Globals.status.unknown + " " + fileInfo.Format;
         return fileInfo;
     },
 
@@ -64,29 +95,55 @@ module.exports = {
 
 //****************************************************************************************************
 // Local Functions
-  
+
+//****************************************************************************************************
+function globalTimestampChecks(fileInfo) {
+    // Format yyyy:mm:dd ändern in yyyy-mm-dd
+    if (fileInfo.DateTaken) { 
+        fileInfo.DateTaken = fileInfo.DateTaken.replace(/(\d{4}):(\d{2}):(\d{2})/g, '$1-$2-$3')
+    }
+    
+    return fileInfo;
+}
+
 //****************************************************************************************************
 function getDefaultInfo(mediaInfo, fileInfo) {
-    fileInfo.dateTaken = mediaInfo.video[0].encoded_date;
-    return fileInfo;
+    if ((mediaInfo.video) && (mediaInfo.video[0]) && (mediaInfo.video[0].encoded_date)) {
+        if (mediaInfo.video[0].encoded_date instanceof Array) {
+            fileInfo.DateTaken = mediaInfo.video[0].encoded_date[0];
+        }
+        else {
+            fileInfo.DateTaken = mediaInfo.video[0].encoded_date;
+        }
+    }
+    else {
+        fileInfo.Status = Globals.status.timstampNotFound
+    }           
+    return globalTimestampChecks(fileInfo);
 }
 
 //****************************************************************************************************
 async function getJpegInfo(mediaInfo, fileInfo) {
-    var exifData = await getExif(fileInfo.filename);
+    var exifData = await getExif(fileInfo.Filename);
     if (!exifData) {
-        fileInfo.status = Globals.status.exifNotFound;
+        fileInfo.Status = Globals.status.exifNotFound;
     }
     else {
-        fileInfo.dateTaken = exifData.exif.DateTimeOriginal;
+        fileInfo.DateTaken = exifData.exif.DateTimeOriginal;
     }
-    return fileInfo;
+    return globalTimestampChecks(fileInfo);
+}
+
+//****************************************************************************************************
+function getGifInfo(mediaInfo, fileInfo) {
+    fileInfo.DateTaken = mediaInfo.general.file_last_modification_date[0];
+    return globalTimestampChecks(fileInfo);
 }
 
 //****************************************************************************************************
 function getBdavInfo(mediaInfo, fileInfo) {
-    fileInfo.dateTaken = mediaInfo.general.file_last_modification_date;
-    return fileInfo;
+    fileInfo.DateTaken = mediaInfo.general.file_last_modification_date;
+    return globalTimestampChecks(fileInfo);
 }
 
 //****************************************************************************************************

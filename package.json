@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "read": "node js/read.js",
+    "timezones": "node js/timezones.js",
+    "analyze": "node js/analyze.js",
     "mix": "node js/mix.js"
   },
   "repository": {
@@ -16,11 +18,14 @@
   "dependencies": {
     "clear-any-console": "^1.16.0",
     "cli-progress": "^3.4.0",
+    "countries-and-timezones": "^2.0.5",
     "exif": "^0.6.0",
+    "fs-extra": "^8.1.0",
     "fs-hard-drive": "^1.0.0",
     "inquirer": "^7.0.0",
     "inquirer-select-directory": "^1.2.0",
     "mediainfo-wrapper": "^1.2.0",
+    "moment-timezone": "^0.5.27",
     "recursive-readdir": "^2.2.2",
     "timezonelist-js": "^0.1.3"
   }

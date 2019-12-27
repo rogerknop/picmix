@@ -3,19 +3,32 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [
-        {
+    "configurations": [{
             "type": "node",
             "request": "launch",
-            "name": "Start Mix",
-            "program": "${workspaceFolder}\\js\\mix.js"
+            "name": "Start Read",
+            "program": "${workspaceFolder}\\js\\read.js"
         },
         {
             "type": "node",
             "request": "launch",
             "console": "externalTerminal",
-            "name": "Start Read",
-            "program": "${workspaceFolder}\\js\\read.js"
+            "name": "Start Analyze",
+            "program": "${workspaceFolder}\\js\\analyze.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "console": "externalTerminal",
+            "name": "Ermittel Offset über Zeitzonen Liste",
+            "program": "${workspaceFolder}\\js\\timezones.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "console": "externalTerminal",
+            "name": "Start Mix",
+            "program": "${workspaceFolder}\\js\\mix.js"
         }
     ]
 }
