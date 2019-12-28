@@ -1,7 +1,7 @@
 // globals.js
 // ========================
 
-const fs = require('fs')
+const fs = require('fs-extra')
 
 
 module.exports = {

@@ -1,7 +1,7 @@
 # PicMix
 
 ## Setup / Installation
-Hier die Schritte für die Installation. Der letzte git Befehl bewirkt, dass die lokalen Einstellungen nicht gepusht werden:
+Hier die Schritte für die Installation:
 ```
 git clone https://github.com/rogerknop/picmix.git
 npm install
@@ -18,14 +18,7 @@ Diese Referenzbilder könnten erstellt worden sein über ein Foto/ Video, was di
 npm run read
 ```
 *Read* fragt alle Infos ab und liest die Verzeichnisse ein und speichert das Ergebnis in der Datei *data/[Eventname]-control.json*.  
-Bei Bedarf können einzelne Attribute in der Datei *data/[Eventname]-control.json* überschrieben werden.
-
-### Timezones - Ermitteln der Zeitdifferenz (Offset) zu einem Ort 
-```
-npm run timezones
-```
-*Timezones* fragt nach einem Filter. Falls kein Filter angegeben wurde, werden alle Zeitzonen angezeigt.  
-Die Zeitzone steht im Ergebnis in der Spalte "*Zeitzone*", die dann in der Datei *data/[Eventname]-control.json* für die jeweilige Kollektion im Attribut *Input_Timezone* gesetzt werden kann.
+Bei Bedarf können einzelne Attribute in der Datei *data/[Eventname]-control.json* überschrieben werden. Zum Beispiel manuell eine Zeitverschiebung pflegen im Attribut *Offset_Manual_Timestamp* oder die Referenzbilder eintragen.
 
 ### Analyse - Analyse der Dateien innerhalb der Kollektionen
 ```
@@ -40,6 +33,13 @@ Dort kann man nach der Analyse nach ***ERROR*** suchen, um die Problemfälle zu 
 npm run mix
 ```
 Bei *Mix* werden die Dateien gemäß Datei *data/[Eventname]-data.json* in das Output Verzeichnis kopiert.
+
+### Timezones - Ermitteln der Zeitdifferenz (Offset) zu einem Ort 
+```
+npm run timezones
+```
+*Timezones* fragt nach einem Filter. Falls kein Filter angegeben wurde, werden alle Zeitzonen angezeigt.  
+Die Zeitzone steht im Ergebnis in der Spalte "*Zeitzone*", die dann in der Datei *data/[Eventname]-control.json* für die jeweilige Kollektion im Attribut *Input_Timezone* gesetzt werden kann.
 
 ## Technische Beschreibung der Attribute
 
@@ -60,12 +60,11 @@ Bei *Mix* werden die Dateien gemäß Datei *data/[Eventname]-data.json* in das O
 | -------------------------------- |-------------
 | Name                             | Name der Kollektion
 | Directory                        | Unterverzeichnis der Kollektion unter *Base_Diectory*
-| Timestamp_Type                   | Zeitstemplel Typ ***ToDo***
+| Timestamp_Type                   | Zeitstemplel Typ - derzeit nicht verwendet
 | Input_Timezone                   | Name der Zeitzone, in der die Aufnahmen gemacht wurden (zum Ermitteln hilft `npm run timezones`). Dieser Wert wird als Default genommen, wenn innerhalb eines Fotos/ Videos dieser Kollektion keine Zeitzone manuell gesetzt wurde. Default ist die deutsche Zeitzone *Berlin UTC+1*
-| Offset_Auto_Reference_Pic        | Referenzfoto, was zum gleichen Zeitpunkt gemacht wurde wie *Offset_Auto_Reference_Pic_Master*  ***ToDo***
-| Offset_Auto_Reference_Pic_Master | Referenzfoto, was zum gleichen Zeitpunkt gemacht wurde wie *Offset_Auto_Reference_Pic*. Dieses Foto wird mit einem relatvem Pfad zu einer anderen Kollektion angegeben.  ***ToDo***
-| Offset_Manual_Date               | Manueller Offset für das Datum im Format: +/-TT:MM:JJ
-| Offset_Manual_Time               | Manueller Offset für die Zeit im Format: +/-HH:MM:SS
+| Offset_Auto_Reference_Pic        | Referenzfoto oder Video, was zum gleichen Zeitpunkt gemacht wurde wie *Offset_Auto_Reference_Pic_Master*. Nur der Name der Datei ohne Pfadangabe.
+| Offset_Auto_Reference_Pic_Master | Referenzfoto oder Video, was zum gleichen Zeitpunkt gemacht wurde wie *Offset_Auto_Reference_Pic*. Diese Datei wird mit dem entsprechenden Sub-Pfad zu einer anderen Kollektion angegeben. Hierbei müssen die beiden Kollektionen die gleiche *Input_Timezone* haben. Die ermittelte Differenz wird in das Attribut *Offset_Manual_Timestamp* eingetragen.
+| Offset_Manual_Timestamp          | Manueller Offset für Datum und Zeit im Format: +/-YYYY:MM:TT HH:MM:SS
 
 #### Attribute *data/[Eventname]-data.json*
 

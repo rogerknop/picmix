@@ -7,7 +7,7 @@ const ts = require('./timestamp')
 const Collection = require('./collection');
 const colors = require('colors/safe');
 
-const fs = require('fs')
+const fs = require('fs-extra')
 const clearConsole = require('clear-any-console');
 const drivelist = require('fs-hard-drive').lsDevices;
 var { from } = require('rxjs');
@@ -218,7 +218,7 @@ async function main() {
 //****************************************************************************************************
 async function finalizeConfig() {
   console.log("\nDie Kollektionen werden ermittelt!");
-  var subfolders = getDirectories(control["Base_Directory"]);  
+  var subfolders = getDirectories(control);  
   //console.log(subfolders);
 
   var collections = subfolders.map( (path) => {
@@ -229,8 +229,7 @@ async function finalizeConfig() {
       "Input_Timezone": "Europe/Berlin",
       "Offset_Auto_Reference_Pic": "", 
       "Offset_Auto_Reference_Pic_Master": "",
-      "Offset_Manual_Date": "+0000-00-00",
-      "Offset_Manual_Time": "+00:00:00"
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
     }
   });
 
@@ -254,10 +253,13 @@ async function finalizeConfig() {
 }
 
 //****************************************************************************************************
-const getDirectories = source =>
-  fs.readdirSync(source, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
+function getDirectories(control) {
+  var outputPath = Globals.getFullPath("", control["Output_Mix_Path"]);
+  outputPath = outputPath.replace(/\//, "");
+  return fs.readdirSync(control["Base_Directory"], { withFileTypes: true })
+    .filter(dirent => (dirent.isDirectory() && (dirent.name !== outputPath)))
     .map(dirent => dirent.name);
-
+}
+  
 //****************************************************************************************************
 main();

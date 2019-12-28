@@ -42,8 +42,11 @@ class Collection {
 
     //****************************************************************************************************
     async analyzeCollection(progressbar, doneBefore) {
-        //Falls Referenzbild - dann sollten Offset_Manual_Date und Offset_Manual_Date bereits berechnet sein
-        var manualOffset = this.computeManualOffset(this.collectionControl.Offset_Manual_Date, this.collectionControl.Offset_Manual_Time);
+        //Falls Referenzbild - dann Offset_Manual_Timestamp ermitteln
+        await this.setManualOffsetBasedOnReference();
+
+        //Offset berechnen für die Kollektion
+        var manualOffset = this.computeManualOffset(this.collectionControl.Offset_Manual_Timestamp);
 
         var done = doneBefore;
         for (const file of this.Files) {
@@ -74,7 +77,7 @@ class Collection {
         }
 
         /*
-          TODO: Durchfalllogik Timestamp
+          Durchfalllogik Timestamp
           1. fileInfo.DateTaken
           2. Falls fileInfo.Timezone einen Wert hat dann diesen für DateTaken setzen ohne umzurechnen
           3. Sonst collectionControl.Input_Timezone für DateTaken setzen ohne umzurechnen
@@ -131,24 +134,54 @@ class Collection {
         var offset = date.isDST ? timezoneDetails.dstOffset : timezoneDetails.utcOffset;
         return offset * 60;
     }
+
+    //****************************************************************************************************
+    async setManualOffsetBasedOnReference() {
+        if (!this.collectionControl.Offset_Auto_Reference_Pic || (this.collectionControl.Offset_Auto_Reference_Pic==="") ||
+            !this.collectionControl.Offset_Auto_Reference_Pic_Master || (this.collectionControl.Offset_Auto_Reference_Pic_Master==="")) { return; }
+        //Referenzbild Timestamp ermitteln
+        var fileInfoRef = await FileInfo.getFileInfo("", this.Path + "/" + this.collectionControl.Offset_Auto_Reference_Pic);
+        
+        //Referenzbild Master Timestamp ermitteln
+        var fileInfoRefMaster = await FileInfo.getFileInfo("", Globals.getFullPath(this.control["Base_Directory"] + "/", this.collectionControl.Offset_Auto_Reference_Pic_Master));
+
+        //Manual Offset Date und Time setzen
+        var refTimestamp = moment(fileInfoRef.DateTaken);
+        var refTimestampMaster = moment(fileInfoRefMaster.DateTaken);
+        var diff = refTimestampMaster.diff(refTimestamp);
+
+        var sign = (diff >= 0) ? "+" : "-";
+        if (diff < 0) {diff = diff * (-1)}
+
+        var duration = moment.duration(diff);
+
+        if (!duration.isValid()) {return;}
+
+        this.collectionControl.Offset_Manual_Timestamp = 
+          sign + 
+          String(duration.years()).padStart(4, '0') + "-" +
+          String(duration.months()).padStart(2, '0') +  "-" +
+          String(duration.days()).padStart(2, '0') + 
+          " " + 
+          String(duration.hours()).padStart(2, '0') +  ":" +
+          String(duration.minutes()).padStart(2, '0') +  ":" +
+          String(duration.seconds()).padStart(2, '0');
+    }
     
     //****************************************************************************************************
-    computeManualOffset(date, time) {
+    computeManualOffset(timestamp) {
         var seconds = 0;
         var months = 0;
         var years = 0;
 
-        if ((date) && (date.length == 11)) {
-            var dateFaktor = (date.substr(0,1) == "+") ? 1 : -1;
-            years = date.substr(1,4) * dateFaktor;
-            months = date.substr(6,2) * dateFaktor;
-            seconds += Globals.days2seconds(date.substr(9,2)) * dateFaktor;
-        } 
-
-        if ((time) && (time.length == 6)) {
-            var timeFaktor = (time.substr(0,1) == "+") ? 1 : -1;
-            seconds += Globals.hours2seconds(time.substr(1,2)) * timeFaktor;
-            seconds += Globals.minutes2seconds(time.substr(4,2)) * timeFaktor;
+        if ((timestamp) && (timestamp.length == 20)) {
+            var faktor = (timestamp.substr(0,1) == "+") ? 1 : -1;
+            years = timestamp.substr(1,4) * faktor;
+            months = timestamp.substr(6,2) * faktor;
+            seconds += Globals.days2seconds(timestamp.substr(9,2)) * faktor;
+            seconds += Globals.hours2seconds(timestamp.substr(12,2)) * faktor;
+            seconds += Globals.minutes2seconds(timestamp.substr(15,2)) * faktor;
+            seconds += parseInt(timestamp.substr(18,2)) * faktor;            
         } 
         
         return {years: years, months: months, seconds: seconds};

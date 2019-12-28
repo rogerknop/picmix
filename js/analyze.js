@@ -6,7 +6,7 @@ const Globals = require('./globals');
 const Collection = require('./collection');
 const colors = require('colors/safe');
 
-const fs = require('fs')
+const fs = require('fs-extra')
 const clearConsole = require('clear-any-console');
 const cliProgress = require('cli-progress');
 
