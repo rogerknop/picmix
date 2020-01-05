@@ -47,7 +47,7 @@ module.exports = {
         else {
             appConfig = 
             {
-                LastName: "Test Event"
+                LastName: ""
             }
         }
         return appConfig;
@@ -74,7 +74,14 @@ module.exports = {
         }        
     },
 
+    createFolderIfNotExist(folder) {
+        if (!fs.existsSync(folder)){
+            fs.mkdirSync(folder);
+        }
+    },
+
     getAllEvents: function(includeNew) {
+        this.createFolderIfNotExist('./data');
         var allEvents = [];
         if (includeNew) { allEvents.push(this.NewEvent); }
         fs.readdirSync('./data/').filter(function(file) {
