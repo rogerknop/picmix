@@ -40,6 +40,7 @@ module.exports = {
     appConfigFile: './config/appconfig.json',
 
     readAppConfig : function() {
+        this.createFolderIfNotExist('./config');
         var appConfig;
         if (fs.existsSync(this.appConfigFile)) {
             appConfig = JSON.parse(fs.readFileSync(this.appConfigFile),'UTF8');
