@@ -74,6 +74,7 @@ async function mix() {
     
     appConfig.LastName = control["Name"];
     Globals.writeAppConfig(appConfig);
+    Globals.writeEventData(control["Name"], collections);
 
     if (error > 0) {
         console.log("\n" + colors.red.bold(error + " Dateien wurden nicht kopiert!\n"));
@@ -98,6 +99,8 @@ function copyFile(total, count, control, fileInfo) {
                    "_" +
                    String(count).padStart(total.toString().length, '0') + 
                    fileInfo.Filename.substr(-4);
+
+    fileInfo.MixIndex =  String(count).padStart(total.toString().length, '0');
 
     try {
         fs.copySync(source, destination);

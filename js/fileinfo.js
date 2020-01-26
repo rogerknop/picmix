@@ -115,6 +115,8 @@ function getDefaultInfo(mediaInfo, fileInfo) {
         else {
             fileInfo.DateTaken = mediaInfo.video[0].encoded_date;
         }
+
+        fileInfo.DateTaken = fileInfo.DateTaken.replace("UTC ", "");
     }
     else {
         fileInfo.Status = Globals.status.timstampNotFound

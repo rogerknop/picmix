@@ -24,6 +24,7 @@ module.exports = {
         "Base_Directory": "C:/FotoMix",
         "Output_Timezone": "CET",
         "Output_Mix_Path": "./mix",
+        "Output_Offset_Manual_Timestamp": "+0000-00-00 00:00:00",  
         "Mix_Praefix": "TestMix_"
     },
     

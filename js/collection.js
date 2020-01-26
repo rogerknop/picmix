@@ -47,6 +47,7 @@ class Collection {
 
         //Offset berechnen für die Kollektion
         var manualOffset = this.computeManualOffset(this.collectionControl.Offset_Manual_Timestamp);
+        var globalOffset = this.computeManualOffset(this.control["Output_Offset_Manual_Timestamp"]);
 
         var done = doneBefore;
         for (const file of this.Files) {
@@ -56,7 +57,7 @@ class Collection {
                 this.ErrorCount++;
             }
             else {
-                this.computeRealTimestamp(manualOffset, fileInfo);
+                this.computeRealTimestamp(globalOffset, manualOffset, fileInfo);
             }
 
             this.FileInfos.push(fileInfo);
@@ -66,7 +67,7 @@ class Collection {
     }
 
     //****************************************************************************************************
-    computeRealTimestamp(manualOffset, fileInfo) {
+    computeRealTimestamp(globalOffset, manualOffset, fileInfo) {
         if (fileInfo.debug) {
             debugger;
         }
@@ -99,6 +100,7 @@ class Collection {
         
         // Falls manuell Jahr, Monat, Sekunden Offset anfällt antsprechend addieren & Ergebnis in ComputedTimestamp ablegen
         fileInfo.ComputedTimestamp = mediaDate.add(manualOffset.years, "y").add(manualOffset.months, "M").add(manualOffset.seconds, "s").format("YYYY-MM-DD HH:mm:ss");
+        fileInfo.ComputedTimestamp = mediaDate.add(globalOffset.years, "y").add(globalOffset.months, "M").add(globalOffset.seconds, "s").format("YYYY-MM-DD HH:mm:ss");
 
         //console.log( timeZone + " -> " + date.toLocaleString('de-DE', {hour12: false, timeZone: timeZone })  );
 

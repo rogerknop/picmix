@@ -46,14 +46,15 @@ Die Zeitzone steht im Ergebnis in der Spalte "*Zeitzone*", die dann in der Datei
 #### Attribute *data/[Eventname]-control.json*
 
 ##### Header
-| Attribut        | Beschreibung
-| --------------- |-------------
-| Name            | Eventname
-| Base_Directory  | Haupverzeichnis, unter dem alle Kollektionen zu finden sind
-| Output_Timezone | Zeitzone, die im Event für den Mix verwendet werden soll
-| Output_Mix_Path | Zielverzeichnis, in das alle Dateien umbenannt kopiert werden
-| Mix_Praefix     | Präfix, welches vor alle Dateinamen vorangestellt wird
-| Collections     | Liste mit allen Kollektionen (Details im nächsten Kapitel)
+| Attribut                       | Beschreibung
+| ------------------------------ |-------------
+| Name                           | Eventname
+| Base_Directory                 | Haupverzeichnis, unter dem alle Kollektionen zu finden sind
+| Output_Timezone                | Zeitzone, die im Event für den Mix verwendet werden soll
+| Output_Mix_Path                | Zielverzeichnis, in das alle Dateien umbenannt kopiert werden
+| Output_Offset_Manual_Timestamp | Offset für alle Dateien, was am Ende berechnet wird. Hilfreich, wenn das Referenzbild des Masters die falsche Zeit hat.
+| Mix_Praefix                    | Präfix, welches vor alle Dateinamen vorangestellt wird
+| Collections                    | Liste mit allen Kollektionen (Details im nächsten Kapitel)
 
 ##### Kollektion
 | Attribut                         | Beschreibung
