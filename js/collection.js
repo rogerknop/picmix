@@ -43,7 +43,7 @@ class Collection {
     //****************************************************************************************************
     async analyzeCollection(progressbar, doneBefore) {
         //Falls Referenzbild - dann Offset_Manual_Timestamp ermitteln
-        await this.setManualOffsetBasedOnReference();
+        var refInfo = await this.setManualOffsetBasedOnReference();
 
         //Offset berechnen für die Kollektion
         var manualOffset = this.computeManualOffset(this.collectionControl.Offset_Manual_Timestamp);
@@ -52,6 +52,17 @@ class Collection {
         var done = doneBefore;
         for (const file of this.Files) {
             var fileInfo = await FileInfo.getFileInfo(this.Name, file);
+
+            if ((refInfo.fileInfoRef.Status !== Globals.status.ok) || (refInfo.fileInfoRefMaster.Status !== Globals.status.ok)) {
+                fileInfo.Status = "";
+                if (refInfo.fileInfoRefMaster.Status !== Globals.status.ok) {
+                    fileInfo.Status += refInfo.fileInfoRefMaster.Status + " (Reference Pic Master)";
+                }
+                if (refInfo.fileInfoRef.Status !== Globals.status.ok) {
+                    if (fileInfo.Status !== "") {fileInfo.Status += " / ";}
+                    fileInfo.Status += refInfo.fileInfoRef.Status + " (Reference Pic)";
+                }
+            }
             
             if (fileInfo.Status.indexOf('ERROR') >= 0) {
                 this.ErrorCount++;
@@ -140,13 +151,20 @@ class Collection {
     //****************************************************************************************************
     async setManualOffsetBasedOnReference() {
         if (!this.collectionControl.Offset_Auto_Reference_Pic || (this.collectionControl.Offset_Auto_Reference_Pic==="") ||
-            !this.collectionControl.Offset_Auto_Reference_Pic_Master || (this.collectionControl.Offset_Auto_Reference_Pic_Master==="")) { return; }
+            !this.collectionControl.Offset_Auto_Reference_Pic_Master || (this.collectionControl.Offset_Auto_Reference_Pic_Master==="")) { 
+            return {fileInfoRefMaster: {Status: Globals.status.ok}, fileInfoRef: {Status: Globals.status.ok}}; 
+        }
+
         //Referenzbild Timestamp ermitteln
         var fileInfoRef = await FileInfo.getFileInfo("", this.Path + "/" + this.collectionControl.Offset_Auto_Reference_Pic);
         
         //Referenzbild Master Timestamp ermitteln
         var fileInfoRefMaster = await FileInfo.getFileInfo("", Globals.getFullPath(this.control["Base_Directory"] + "/", this.collectionControl.Offset_Auto_Reference_Pic_Master));
 
+        if ((fileInfoRef.Status !== Globals.status.ok) || (fileInfoRefMaster.Status !== Globals.status.ok)) {
+          return {fileInfoRefMaster: fileInfoRefMaster, fileInfoRef: fileInfoRef};
+        }
+        
         //Manual Offset Date und Time setzen
         var refTimestamp = moment(fileInfoRef.DateTaken);
         var refTimestampMaster = moment(fileInfoRefMaster.DateTaken);
@@ -168,6 +186,8 @@ class Collection {
           String(duration.hours()).padStart(2, '0') +  ":" +
           String(duration.minutes()).padStart(2, '0') +  ":" +
           String(duration.seconds()).padStart(2, '0');
+
+        return {fileInfoRefMaster: fileInfoRefMaster, fileInfoRef: fileInfoRef};
     }
     
     //****************************************************************************************************

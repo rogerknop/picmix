@@ -3,24 +3,15 @@
 
 const Globals = require('./globals');
 
+const fs = require('fs-extra')
 const Mediainfo = require('mediainfo-wrapper');
 const ExifImage = require('exif').ExifImage;
-
 
 module.exports = {
     //****************************************************************************************************
     getFileInfo: async function(collectionname, filename) {    
-        var mediaInfo;
-
-        try {
-            mediaInfo = await Mediainfo(filename);
-            mediaInfo = mediaInfo[0];
-        } catch (error) {
-            console.log('Rogi Error: ' + error.message);
-        }
-
         var fileInfo = {};
-
+        
         if ((Globals.existingFileData[collectionname] !== undefined) && (Globals.existingFileData[collectionname][filename] !== undefined)) {
             fileInfo = Globals.existingFileData[collectionname][filename];
         }
@@ -36,9 +27,24 @@ module.exports = {
                 ComputedTimestamp: ""
             };
         }
-
+        
         if (fileInfo.debug) {
             debugger;
+        }
+        
+        if (!fs.existsSync(filename)) {
+            fileInfo.Status = Globals.status.fileNotFound;
+            return fileInfo;
+        }
+        
+        var mediaInfo;
+        try {
+            mediaInfo = await Mediainfo(filename);
+            mediaInfo = mediaInfo[0];
+        } catch (error) {
+            console.log('Rogi Error: ' + error.message);
+            fileInfo.Status = Globals.status.mediaInfoNotFound;
+            return fileInfo;
         }
 
         if (fileInfo.UseDateTaken) {
