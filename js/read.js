@@ -117,13 +117,6 @@ async function main() {
       }
     },
     {
-      type: 'list',
-      name: 'OutputTimezone',
-      message: "Zeitzone für den Foto Mix?",
-      choices: ts.tzchoices,
-      default: function(currentAnswer) { return control["Output_Timezone"]; }
-    },
-    {
       type: 'input',
       name: 'OutputMixDir',
       message: "Unterverzeichnis im Hauptverzeichnis für den FotoMix (Achtung! Wird überschrieben)?",
@@ -185,11 +178,6 @@ async function main() {
         control["Base_Directory"] = currentAnswer.answer;
       }
 
-      // Output-Timezone
-      if (currentAnswer.name == "OutputTimezone") {
-        control["Output_Timezone"] = currentAnswer.answer;
-      }
-
       // Output-Mix-Path
       if (currentAnswer.name == "OutputMixDir") {
         control["Output_Mix_Path"] = currentAnswer.answer;
@@ -226,7 +214,6 @@ async function finalizeConfig() {
       "Name": path,
       "Directory": "./" + path,
       "Timestamp_Type": "",
-      "Input_Timezone": "Europe/Berlin",
       "Offset_Auto_Reference_Pic": "", 
       "Offset_Auto_Reference_Pic_Master": "",
       "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"

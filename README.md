@@ -34,13 +34,6 @@ npm run mix
 ```
 Bei *Mix* werden die Dateien gemäß Datei *data/[Eventname]-data.json* in das Output Verzeichnis kopiert.
 
-### Timezones - Ermitteln der Zeitdifferenz (Offset) zu einem Ort 
-```
-npm run timezones
-```
-*Timezones* fragt nach einem Filter. Falls kein Filter angegeben wurde, werden alle Zeitzonen angezeigt.  
-Die Zeitzone steht im Ergebnis in der Spalte "*Zeitzone*", die dann in der Datei *data/[Eventname]-control.json* für die jeweilige Kollektion im Attribut *Input_Timezone* gesetzt werden kann.
-
 ## Technische Beschreibung der Attribute
 
 #### Attribute *data/[Eventname]-control.json*
@@ -50,7 +43,6 @@ Die Zeitzone steht im Ergebnis in der Spalte "*Zeitzone*", die dann in der Datei
 | ------------------------------ |-------------
 | Name                           | Eventname
 | Base_Directory                 | Haupverzeichnis, unter dem alle Kollektionen zu finden sind
-| Output_Timezone                | Zeitzone, die im Event für den Mix verwendet werden soll
 | Output_Mix_Path                | Zielverzeichnis, in das alle Dateien umbenannt kopiert werden
 | Output_Offset_Manual_Timestamp | Offset für alle Dateien, was am Ende berechnet wird. Hilfreich, wenn das Referenzbild des Masters die falsche Zeit hat.
 | Mix_Praefix                    | Präfix, welches vor alle Dateinamen vorangestellt wird
@@ -62,9 +54,8 @@ Die Zeitzone steht im Ergebnis in der Spalte "*Zeitzone*", die dann in der Datei
 | Name                             | Name der Kollektion
 | Directory                        | Unterverzeichnis der Kollektion unter *Base_Diectory*
 | Timestamp_Type                   | Zeitstemplel Typ - derzeit nicht verwendet
-| Input_Timezone                   | Name der Zeitzone, in der die Aufnahmen gemacht wurden (zum Ermitteln hilft `npm run timezones`). Dieser Wert wird als Default genommen, wenn innerhalb eines Fotos/ Videos dieser Kollektion keine Zeitzone manuell gesetzt wurde. Default ist die deutsche Zeitzone *Berlin UTC+1*
 | Offset_Auto_Reference_Pic        | Referenzfoto oder Video, was zum gleichen Zeitpunkt gemacht wurde wie *Offset_Auto_Reference_Pic_Master*. Nur der Name der Datei ohne Pfadangabe.
-| Offset_Auto_Reference_Pic_Master | Referenzfoto oder Video, was zum gleichen Zeitpunkt gemacht wurde wie *Offset_Auto_Reference_Pic*. Diese Datei wird mit dem entsprechenden Sub-Pfad zu einer anderen Kollektion angegeben. Hierbei müssen die beiden Kollektionen die gleiche *Input_Timezone* haben. Die ermittelte Differenz wird in das Attribut *Offset_Manual_Timestamp* eingetragen.
+| Offset_Auto_Reference_Pic_Master | Referenzfoto oder Video, was zum gleichen Zeitpunkt gemacht wurde wie *Offset_Auto_Reference_Pic*. Diese Datei wird mit dem entsprechenden Sub-Pfad zu einer anderen Kollektion angegeben. Die ermittelte Differenz wird in das Attribut *Offset_Manual_Timestamp* eingetragen.
 | Offset_Manual_Timestamp          | Manueller Offset für Datum und Zeit im Format: +/-YYYY:MM:TT HH:MM:SS
 
 #### Attribute *data/[Eventname]-data.json*
@@ -83,7 +74,6 @@ Die Zeitzone steht im Ergebnis in der Spalte "*Zeitzone*", die dann in der Datei
 | UseDateTaken      | *true* Wenn dieser Wert *true* ist, dann wird bei der Analyse kein Zeitstempel *ComputedTimestamp* errechnet, sonder einfach *DateTaken* übernommen. Dadurch kann man manuell den Zeitstempel setzen.
 | Status            | Status des Fotos/ Videos, ob ein Zeitstempel ermittelt werden konnte. Sollte hier ***Error*** auftauchen, dann sollte diese Datei geprüft werden, da sie nicht sinnvoll in die chronologische Reihenfolge eingefügt werden kann.
 | Filename          | Kompletter Pfad zu dem Foto/ Video
-| Timezone          | Wenn hier manuell eine Zeitzone eingetragen wurde (zum Ermitteln hilft `npm run timezones`), dann wird in diese umgerechnet. Falls kein Wert, dann wird in die *Input_Timezone* verwendet für die Umrechnung in die *Ouput_Timezone*. 
 | Found             | *[true/false]*, ob der Zeitstempel ermittelt werden konnte
 | Format            | Format des Zeitstempels
 | DateTaken         | Original Zeitstempel

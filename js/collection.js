@@ -88,57 +88,11 @@ class Collection {
             return;
         }
 
-        /*
-          Durchfalllogik Timestamp
-          1. fileInfo.DateTaken
-          2. Falls fileInfo.Timezone einen Wert hat dann diesen für DateTaken setzen ohne umzurechnen
-          3. Sonst collectionControl.Input_Timezone für DateTaken setzen ohne umzurechnen
-        */
-
-        // Foto/ Video Zeitzone ermitteln und moment Objekt mit dieser Zone erstellen
-        var inputTimezone = ((fileInfo.Timezone) && (fileInfo.Timezone!=="")) ? fileInfo.Timezone : this.collectionControl.Input_Timezone;
-        var mediaDate = moment.tz(fileInfo.DateTaken, inputTimezone);
-
-        // Falls Zeitstempel nicht erkannt wurde Fehler
-        if (!mediaDate.isValid()) {
-            fileInfo.Status = Globals.status.dateNotValid;
-            fileInfo.ComputedTimestamp = "";
-            return;
-        }
-        
-        // Zeitstempel gemäß Ausgabe Zeitzone umrechnen
-        mediaDate.tz(ts.tzlookup[this.control.Output_Timezone].value);
+        var mediaDate = moment(fileInfo.DateTaken);
         
         // Falls manuell Jahr, Monat, Sekunden Offset anfällt antsprechend addieren & Ergebnis in ComputedTimestamp ablegen
         fileInfo.ComputedTimestamp = mediaDate.add(manualOffset.years, "y").add(manualOffset.months, "M").add(manualOffset.seconds, "s").format("YYYY-MM-DD HH:mm:ss");
         fileInfo.ComputedTimestamp = mediaDate.add(globalOffset.years, "y").add(globalOffset.months, "M").add(globalOffset.seconds, "s").format("YYYY-MM-DD HH:mm:ss");
-
-        //console.log( timeZone + " -> " + date.toLocaleString('de-DE', {hour12: false, timeZone: timeZone })  );
-
-        
-        /*
-        ALT
-        ---------------
-
-        //Offset für den Ausgabe Mix
-        var outputOffset = this.getTimezoneOffset(mediaDate, ts.tzlookup[this.control.Output_Timezone].value);
-        
-        //Datei offset oder falls leer collection input_timezone offset
-        var mediaOffset = 0;
-        if ((fileInfo.Timezone) && (fileInfo.Timezone!=="")) {
-            mediaOffset = this.getTimezoneOffset(mediaDate, fileInfo.Timezone);
-        }
-        else {
-            mediaOffset = this.getTimezoneOffset(mediaDate, this.collectionControl.Input_Timezone);
-        }
-        
-        13:00
-        Input nach UTC: +01:00 => -3600 Sek. => 12:00 UTC
-          Output von UTC: +02:00 => +7200 Sek. => 14:00 local Timezone
-          Manual                 => + 600 Sek. => 14:10 local Timezone 
-         var secondsOffset = manualOffset.seconds + outputOffset - mediaOffset;
-        */
-
     }
 
     //****************************************************************************************************

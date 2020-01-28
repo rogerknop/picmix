@@ -23,7 +23,6 @@ module.exports = {
                 Found: false,
                 Format: "",
                 DateTaken: "",
-                Timezone: "",
                 ComputedTimestamp: ""
             };
         }

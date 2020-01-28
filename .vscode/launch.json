@@ -21,13 +21,6 @@
             "type": "node",
             "request": "launch",
             "console": "externalTerminal",
-            "name": "Ermittel Offset über Zeitzonen Liste",
-            "program": "${workspaceFolder}\\js\\timezones.js"
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "console": "externalTerminal",
             "name": "Start Mix",
             "program": "${workspaceFolder}\\js\\mix.js"
         }
