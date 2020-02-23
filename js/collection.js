@@ -180,7 +180,7 @@ class Collection {
 // Local Functions
 async function getAllFiles(path) {
     let getDirRecursivePromise = new Promise((resolve, reject) => {
-        recursive(path, ["*.THM", "*.LRV"], function (err, files) {
+        recursive(path, ["*.H0", "*.WAV", "*.HDP", "*.mxv", "*.xxx", "*.THM", "*.LRV"], function (err, files) {
             // `files` is an array of file paths
             resolve(files);
         });
