@@ -98,7 +98,8 @@ function copyFile(total, count, control, fileInfo) {
                    fileInfo.ComputedTimestamp.substr(11,2) + fileInfo.ComputedTimestamp.substr(14,2) + fileInfo.ComputedTimestamp.substr(17,2) + 
                    "_" +
                    String(count).padStart(total.toString().length, '0') + 
-                   fileInfo.Filename.substr(-4);
+                   getExtension(fileInfo.Filename);
+                   //fileInfo.Filename.substr(-4);
 
     fileInfo.MixIndex =  String(count).padStart(total.toString().length, '0');
 
@@ -109,6 +110,12 @@ function copyFile(total, count, control, fileInfo) {
     catch (err) {
         return false;
     }
+}
+
+//****************************************************************************************************
+function getExtension(filename) {
+    var i = filename.lastIndexOf('.');
+    return (i < 0) ? '' : filename.substr(i);
 }
 
 //****************************************************************************************************
