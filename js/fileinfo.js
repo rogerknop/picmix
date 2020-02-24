@@ -136,7 +136,12 @@ async function getJpegInfo(mediaInfo, fileInfo) {
         fileInfo.Status = Globals.status.exifNotFound;
     }
     else {
-        fileInfo.DateTaken = exifData.exif.DateTimeOriginal;
+        if (!exifData.exif.DateTimeOriginal) {
+            fileInfo.Status = Globals.status.exifDateTimeNotFound;
+        }
+        else { 
+            fileInfo.DateTaken = exifData.exif.DateTimeOriginal;
+        }
     }
     return globalTimestampChecks(fileInfo);
 }

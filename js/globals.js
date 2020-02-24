@@ -14,6 +14,7 @@ module.exports = {
         timstampNotFound: "ERROR: Timestamp not found as expected",
         mediaInfoNotFound: "ERROR: MediaInfo not found",
         exifNotFound: "ERROR: Exif not found",
+        exifDateTimeNotFound: "ERROR: Exif DateTimeOriginal not found",
         fileNotFound: "ERROR: File not found",
         dateNotValid: "ERROR: DateTaken Timestamp not valid"
     },

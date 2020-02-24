@@ -143,7 +143,6 @@ async function main() {
           control.Name = "";
         }
         else {
-          console.log("\n" + colors.red.bold("ACHTUNG! Die Kollektionen werden anhand der gelesenen Daten überschrieben!") + "\n");
           BaseDirSelectionTypeDefault = Globals.readEventControlExists(appConfig.LastName) ? "Eingabe" : "Auswahl";
         }
       }
@@ -210,13 +209,25 @@ async function finalizeConfig() {
   //console.log(subfolders);
 
   var collections = subfolders.map( (path) => {
-    return {
-      "Name": path,
-      "Directory": "./" + path,
-      "Timestamp_Type": "",
-      "Offset_Auto_Reference_Pic": "", 
-      "Offset_Auto_Reference_Pic_Master": "",
-      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    var existingCollection = null;
+    for (const collidx in control.Collections) {
+      if (control.Collections[collidx].Directory === "./" + path) {
+        existingCollection = control.Collections[collidx];
+        break;
+      }
+    }
+    if (existingCollection) {
+      return existingCollection;
+    }
+    else {
+      return {
+        "Name": path,
+        "Directory": "./" + path,
+        "Timestamp_Type": "",
+        "Offset_Auto_Reference_Pic": "", 
+        "Offset_Auto_Reference_Pic_Master": "",
+        "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+      }
     }
   });
 

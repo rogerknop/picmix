@@ -18,7 +18,8 @@ Diese Referenzbilder könnten erstellt worden sein über ein Foto/ Video, was di
 npm run read
 ```
 *Read* fragt alle Infos ab und liest die Verzeichnisse ein und speichert das Ergebnis in der Datei *data/[Eventname]-control.json*.  
-Bei Bedarf können einzelne Attribute in der Datei *data/[Eventname]-control.json* überschrieben werden. Zum Beispiel manuell eine Zeitverschiebung pflegen im Attribut *Offset_Manual_Timestamp* oder die Referenzbilder eintragen.
+Bei Bedarf können einzelne Attribute in der Datei *data/[Eventname]-control.json* überschrieben werden. Zum Beispiel manuell eine Zeitverschiebung pflegen im Attribut *Offset_Manual_Timestamp* oder die Referenzbilder eintragen.  
+Existiert bereits die Datei *data/[Eventname]-control.json*, dann werden die Werte nicht überschrieben. Also die Referenzbild Informationen oder der Offset bleibt erhalten.
 
 ### Analyse - Analyse der Dateien innerhalb der Kollektionen
 ```
