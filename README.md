@@ -80,3 +80,8 @@ Bei *Mix* werden die Dateien gemäß Datei *data/[Eventname]-data.json* in das O
 | DateTaken         | Original Zeitstempel
 | ComputedTimestamp | Zeitstempel, der bereits gemäß Zeitzonen und Offset umgerechnet wurde
 | debug             | *true* Kann verwendet werden, um im Debugging schnell an das betreffende Objekt zu kommen
+
+## Probleme
+Die Scripte sollten nie parallel oder doppelt gestartet werden.
+Es könnte zu einem ELIFECYCLE Error kommen.
+Dann müssen evtl. die Dateien *config/appconfig.json*, *data/[Eventname]-data.json* und *data/[Eventname]-control.json* gelöscht werden. Am Besten in der genannten Reihenfolge nacheinander ausprobieren.
