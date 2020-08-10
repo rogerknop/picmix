@@ -56,7 +56,7 @@ Bei *Mix* werden die Dateien gemäß Datei *data/[Eventname]-data.json* in das O
 | Directory                        | Unterverzeichnis der Kollektion unter *Base_Diectory*
 | Timestamp_Type                   | Zeitstemplel Typ - derzeit nicht verwendet
 | Offset_Auto_Reference_Pic        | Referenzfoto oder Video, was zum gleichen Zeitpunkt gemacht wurde wie *Offset_Auto_Reference_Pic_Master*. Nur der Name der Datei ohne Pfadangabe.
-| Offset_Auto_Reference_Pic_Master | Referenzfoto oder Video, was zum gleichen Zeitpunkt gemacht wurde wie *Offset_Auto_Reference_Pic*. Diese Datei wird mit dem entsprechenden Sub-Pfad zu einer anderen Kollektion angegeben. Die ermittelte Differenz wird in das Attribut *Offset_Manual_Timestamp* eingetragen.
+| Offset_Auto_Reference_Pic_Master | Referenzfoto oder Video, was zum gleichen Zeitpunkt gemacht wurde wie *Offset_Auto_Reference_Pic*. Diese Datei wird mit dem entsprechenden Sub-Pfad (z.B.: ***./subpath/RefPic.jpg***) zu einer anderen Kollektion angegeben. Die ermittelte Differenz wird in das Attribut *Offset_Manual_Timestamp* eingetragen.
 | Offset_Manual_Timestamp          | Manueller Offset für Datum und Zeit im Format: +/-YYYY:MM:TT HH:MM:SS
 
 #### Attribute *data/[Eventname]-data.json*
