@@ -5,7 +5,7 @@
 const Globals = require('./globals');
 const ts = require('./timestamp')
 const Collection = require('./collection');
-const colors = require('colors/safe');
+const colors = require('colors');
 
 const fs = require('fs-extra')
 const clearConsole = require('clear-any-console');
