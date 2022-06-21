@@ -34,6 +34,7 @@ Dort kann man nach der Analyse nach ***ERROR*** suchen, um die Problemfälle zu 
 npm run mix
 ```
 Bei *Mix* werden die Dateien gemäß Datei *data/[Eventname]-data.json* in das Output Verzeichnis kopiert.
+Je nach Konfiguration *Convert_Heic_to_JPG* werden die HEIC Dateien in JPG konvertiert. Dieser Vorgang dauert deutlich länger als eine reine Kopie.
 
 ## Technische Beschreibung der Attribute
 
@@ -46,6 +47,7 @@ Bei *Mix* werden die Dateien gemäß Datei *data/[Eventname]-data.json* in das O
 | Base_Directory                 | Haupverzeichnis, unter dem alle Kollektionen zu finden sind
 | Output_Mix_Path                | Zielverzeichnis, in das alle Dateien umbenannt kopiert werden
 | Output_Offset_Manual_Timestamp | Offset für alle Dateien, was am Ende berechnet wird. Hilfreich, wenn das Referenzbild des Masters die falsche Zeit hat.
+| Convert_Heic_to_JPG            | true => Heic wird nicht kopiert, sondern konvertiert in JPG
 | Mix_Praefix                    | Präfix, welches vor alle Dateinamen vorangestellt wird
 | Collections                    | Liste mit allen Kollektionen (Details im nächsten Kapitel)
 

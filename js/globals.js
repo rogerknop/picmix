@@ -23,7 +23,8 @@ module.exports = {
         "Name": "Test Urlaub",
         "Base_Directory": "C:/FotoMix",
         "Output_Mix_Path": "./mix",
-        "Output_Offset_Manual_Timestamp": "+0000-00-00 00:00:00",  
+        "Output_Offset_Manual_Timestamp": "+0000-00-00 00:00:00",   
+        "Convert_Heic_to_JPG": "true",
         "Mix_Praefix": "TestMix_"
     },
     
@@ -43,7 +44,16 @@ module.exports = {
         this.createFolderIfNotExist('./config');
         var appConfig;
         if (fs.existsSync(this.appConfigFile)) {
-            appConfig = JSON.parse(fs.readFileSync(this.appConfigFile),'UTF8');
+            let appConfigJson = fs.readFileSync(this.appConfigFile);
+            if (appConfigJson != "") {
+              appConfig = JSON.parse(appConfigJson,'UTF8');
+            }
+            else {
+                appConfig = 
+                {
+                    LastName: ""
+                }    
+            }
         }
         else {
             appConfig = 

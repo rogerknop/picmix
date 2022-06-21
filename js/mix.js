@@ -5,7 +5,7 @@
 const Globals = require('./globals');
 const Collection = require('./collection');
 const colors = require('colors/safe');
-
+const convert = require('heic-convert');
 const fs = require('fs-extra')
 const clearConsole = require('clear-any-console');
 const cliProgress = require('cli-progress');
@@ -44,11 +44,12 @@ async function main() {
 async function mix() {
     console.log("\nDer Event MIX wird erstellt!");
 
-    await fs.remove(control.Base_Directory +  "/" + control.Output_Mix_Path);
+    await fs.remove(control.Base_Directory + "/" + control.Output_Mix_Path);
+    Globals.createFolderIfNotExist(control.Base_Directory + "/" + control.Output_Mix_Path);
 
     var collections = Globals.existingCollectionData;
     var files = Globals.existingFileData;
-    
+
     var totalFilesCount = 0;
     for (const collkey in collections) {
         totalFilesCount += collections[collkey].FileCount;
@@ -59,22 +60,24 @@ async function mix() {
     const progressbar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
     progressbar.start(totalFilesCount, 0);
     var doneFilesCount = 0;
+    var collectionInstances = [];
     for (const collkey in collections) {
         for (const filekey in files[collkey]) {
-            if (copyFile(totalFilesCount, doneFilesCount, control, files[collkey][filekey])) {
+            if (await copyFile(totalFilesCount, doneFilesCount+1, control, files[collkey][filekey])) {
                 success++;
             }
             else {
                 error++;
-            }        
+            }
             progressbar.update(++doneFilesCount);
         }
+        collectionInstances.push(collections[collkey]);
     }
     progressbar.stop();
-    
+
     appConfig.LastName = control["Name"];
     Globals.writeAppConfig(appConfig);
-    Globals.writeEventData(control["Name"], collections);
+    Globals.writeEventData(control["Name"], collectionInstances);
 
     if (error > 0) {
         console.log("\n" + colors.red.bold(error + " Dateien wurden nicht kopiert!\n"));
@@ -87,28 +90,47 @@ async function mix() {
 }
 
 //****************************************************************************************************
-function copyFile(total, count, control, fileInfo) {
+async function copyFile(total, count, control, fileInfo) {
     if ((fileInfo.Status !== Globals.status.ok) || (fileInfo.ComputedTimestamp.length != 19)) { return; }
 
     var source = fileInfo.Filename;
-    var destination = control.Base_Directory +  "/" + control.Output_Mix_Path + "/" + control.Mix_Praefix;
+    var destination = control.Base_Directory + "/" + control.Output_Mix_Path + "/" + control.Mix_Praefix;
 
-    destination += fileInfo.ComputedTimestamp.substr(0,4) + fileInfo.ComputedTimestamp.substr(5,2) + fileInfo.ComputedTimestamp.substr(8,2) + 
-                   "_" +
-                   fileInfo.ComputedTimestamp.substr(11,2) + fileInfo.ComputedTimestamp.substr(14,2) + fileInfo.ComputedTimestamp.substr(17,2) + 
-                   "_" +
-                   String(count).padStart(total.toString().length, '0') + 
-                   getExtension(fileInfo.Filename);
-                   //fileInfo.Filename.substr(-4);
+    destination += fileInfo.ComputedTimestamp.substr(0, 4) + fileInfo.ComputedTimestamp.substr(5, 2) + fileInfo.ComputedTimestamp.substr(8, 2) +
+        "_" +
+        fileInfo.ComputedTimestamp.substr(11, 2) + fileInfo.ComputedTimestamp.substr(14, 2) + fileInfo.ComputedTimestamp.substr(17, 2) +
+        "_" +
+        String(count).padStart(total.toString().length, '0');
 
-    fileInfo.MixIndex =  String(count).padStart(total.toString().length, '0');
+    fileInfo.MixIndex = String(count).padStart(total.toString().length, '0');
 
-    try {
-        fs.copySync(source, destination);
-        return true;
-    } 
-    catch (err) {
-        return false;
+    var convertHeic = false;
+    if (control["Convert_Heic_to_JPG"] == "true") { convertHeic = true; }
+    if ((fileInfo.Format == "HEIC") && convertHeic) {
+        destination = destination + ".jpg";
+        try {
+            const inputBuffer = await fs.readFileSync(source);
+            const outputBuffer = await convert({
+                buffer: inputBuffer, // the HEIC file buffer
+                format: 'JPEG',      // output format
+                quality: 0.85           // the jpeg compression quality, between 0 and 1
+            });
+            await fs.writeFileSync(destination, outputBuffer);
+            return true;
+        }
+        catch (err) {
+            return false;
+        }
+    }
+    else {
+        destination = destination + getExtension(fileInfo.Filename);
+        try {
+            fs.copySync(source, destination);
+            return true;
+        }
+        catch (err) {
+            return false;
+        }
     }
 }
 

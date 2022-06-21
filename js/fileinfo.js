@@ -6,6 +6,7 @@ const Globals = require('./globals');
 const fs = require('fs-extra')
 const Mediainfo = require('mediainfo-wrapper');
 const ExifImage = require('exif').ExifImage;
+const exifr = require('exifr');
 
 module.exports = {
     //****************************************************************************************************
@@ -52,7 +53,7 @@ module.exports = {
         }
 
         if (mediaInfo && mediaInfo.general && mediaInfo.general.commercial_name && mediaInfo.general.commercial_name[0]) {
-            fileInfo.Format = mediaInfo.general.commercial_name[0];
+            fileInfo.Format = mediaInfo.general.commercial_name[0].toUpperCase();
         }
 
         if (fileInfo.Format == "") {
@@ -70,6 +71,10 @@ module.exports = {
             
             if (fileInfo.Format == "JPEG") {
                 return getJpegInfo(mediaInfo, fileInfo);
+            }    
+            
+            if (fileInfo.Format == "HEIC") {
+                return getHeicInfo(mediaInfo, fileInfo);
             }    
             
             if (fileInfo.Format == "GIF") {
@@ -141,8 +146,28 @@ async function getJpegInfo(mediaInfo, fileInfo) {
         }
         else { 
             fileInfo.DateTaken = exifData.exif.DateTimeOriginal;
+
+
         }
     }
+    return globalTimestampChecks(fileInfo);
+}
+
+//****************************************************************************************************
+async function getHeicInfo(mediaInfo, fileInfo) {
+    var exifData = await getExifr(fileInfo.Filename);
+    if (!exifData) {
+        fileInfo.Status = Globals.status.exifNotFound;
+    }
+    else {
+        if (!exifData.DateTimeOriginal) {
+            fileInfo.Status = Globals.status.exifDateTimeNotFound;
+        }
+        else { 
+            fileInfo.DateTaken = exifData.DateTimeOriginal.toISOString();
+        }
+    }
+
     return globalTimestampChecks(fileInfo);
 }
 
@@ -171,6 +196,24 @@ async function getExif(filename) {
                     resolve(exifData);
                 }
             });
+        } catch (error) {
+            console.log('Error: ' + error.message);
+            reject(null);
+        }    
+    });
+    
+    let exifData = await exifPromise; // wait until the promise resolves (*)
+    return exifData;
+}
+
+//****************************************************************************************************
+async function getExifr(filename) {
+    let exifPromise = new Promise((resolve, reject) => {
+        try {
+            exifr.parse(filename)
+            .then(exifData => {
+              resolve(exifData);
+          });
         } catch (error) {
             console.log('Error: ' + error.message);
             reject(null);
