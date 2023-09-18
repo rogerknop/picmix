@@ -9,6 +9,7 @@ const convert = require('heic-convert');
 const fs = require('fs-extra')
 const clearConsole = require('clear-any-console');
 const cliProgress = require('cli-progress');
+const exiftool = require("exiftool-vendored").exiftool
 
 const inquirer = require('inquirer');
 
@@ -116,7 +117,6 @@ async function copyFile(total, count, control, fileInfo) {
                 quality: 0.85           // the jpeg compression quality, between 0 and 1
             });
             await fs.writeFileSync(destination, outputBuffer);
-            return true;
         }
         catch (err) {
             return false;
@@ -125,12 +125,25 @@ async function copyFile(total, count, control, fileInfo) {
     else {
         destination = destination + getExtension(fileInfo.Filename);
         try {
-            fs.copySync(source, destination);
-            return true;
+            await fs.copySync(source, destination);
         }
         catch (err) {
             return false;
         }
+    }
+    
+    await updateExif(destination, fileInfo);
+    return true;
+}
+
+//****************************************************************************************************
+async function updateExif(file, fileInfo) {
+  if ( 
+         ((fileInfo.Format==="HEIC") || (fileInfo.Format==="JPG"))  &&
+         (fileInfo.ComputedTimestamp)
+     ){
+        //exiftool.write(file, { AllDates: "2016-02-06T16:56:00" })        
+        await exiftool.write(file, { AllDates: fileInfo.ComputedTimestamp }, ["-overwrite_original"])        
     }
 }
 
