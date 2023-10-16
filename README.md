@@ -27,7 +27,8 @@ npm run analyze
 ```
 *Analyze* analysiert die Kollektionen und liest die Dateien ein gemäß Definition in der Datei *data/[Eventname]-control.json*.  
 Das Ergebnis der Analyse wird in der Datei *data/[Eventname]-data.json* abgelegt.
-Dort kann man nach der Analyse nach ***ERROR*** suchen, um die Problemfälle zu finden und evtl. zu bereinigen.
+Dort kann man nach der Analyse nach ***ERROR*** suchen, um die Problemfälle zu finden und evtl. zu bereinigen.  
+Man kann auch manuell *DateTaken* und *ComputedTimestamp* pflegen und den *Status* auf "OK" setzen.
 
 ### Mix - PicMix erstellen aus den Kollektionen
 ```
