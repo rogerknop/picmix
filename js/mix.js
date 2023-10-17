@@ -58,6 +58,7 @@ async function mix() {
 
     var success = 0;
     var error = 0;
+    var notCopiedFiles = [];
     const progressbar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
     progressbar.start(totalFilesCount, 0);
     var doneFilesCount = 0;
@@ -68,6 +69,7 @@ async function mix() {
                 success++;
             }
             else {
+                notCopiedFiles.push(filekey);
                 error++;
             }
             progressbar.update(++doneFilesCount);
@@ -82,6 +84,7 @@ async function mix() {
 
     if (error > 0) {
         console.log("\n" + colors.red.bold(error + " Dateien wurden nicht kopiert!\n"));
+        console.log(notCopiedFiles);
     }
     if (success > 0) {
         console.log("\n" + colors.green.bold(success + " Dateien wurden erfolgreich kopiert!\n"));
