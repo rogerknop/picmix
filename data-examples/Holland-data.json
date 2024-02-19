@@ -1,0 +1,138 @@
+[
+  {
+    "Name": "celebrate",
+    "Path": "C:/Holland/celebrate",
+    "Files": [
+      "C:\\Holland\\celebrate\\1Groede_2022_02b66d745c5d45e9b68c262efd545099_21.jpeg",
+      "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_1.heic",
+      "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_12.heic",
+      "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_10.heic",
+      "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_23.heic",
+      "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_25.heic",
+      "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_27.heic",
+      "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_32.heic",
+      "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_28.heic",
+      "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_36.heic"
+    ],
+    "FileInfos": [
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\Holland\\celebrate\\1Groede_2022_02b66d745c5d45e9b68c262efd545099_21.jpeg",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2022-06-16 11:35:30",
+        "ComputedTimestamp": "2022-06-16 11:35:30",
+        "MixIndex": "01"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_1.heic",
+        "Found": true,
+        "Format": "HEIC",
+        "DateTaken": "2022-06-11T14:13:35.000Z",
+        "ComputedTimestamp": "2022-06-11 16:13:35",
+        "MixIndex": "02"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_12.heic",
+        "Found": true,
+        "Format": "HEIC",
+        "DateTaken": "2022-06-15T15:34:11.000Z",
+        "ComputedTimestamp": "2022-06-15 17:34:11",
+        "MixIndex": "03"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_10.heic",
+        "Found": true,
+        "Format": "HEIC",
+        "DateTaken": "2022-06-15T15:39:02.000Z",
+        "ComputedTimestamp": "2022-06-15 17:39:02",
+        "MixIndex": "04"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_23.heic",
+        "Found": true,
+        "Format": "HEIC",
+        "DateTaken": "2022-06-16T13:26:39.000Z",
+        "ComputedTimestamp": "2022-06-16 15:26:39",
+        "MixIndex": "05"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_25.heic",
+        "Found": true,
+        "Format": "HEIC",
+        "DateTaken": "2022-06-16T18:57:00.000Z",
+        "ComputedTimestamp": "2022-06-16 20:57:00",
+        "MixIndex": "06"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_27.heic",
+        "Found": true,
+        "Format": "HEIC",
+        "DateTaken": "2022-06-16T18:56:31.000Z",
+        "ComputedTimestamp": "2022-06-16 20:56:31",
+        "MixIndex": "07"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_32.heic",
+        "Found": true,
+        "Format": "HEIC",
+        "DateTaken": "2022-06-16T18:11:07.000Z",
+        "ComputedTimestamp": "2022-06-16 20:11:07",
+        "MixIndex": "08"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_28.heic",
+        "Found": true,
+        "Format": "HEIC",
+        "DateTaken": "2022-06-16T18:56:25.000Z",
+        "ComputedTimestamp": "2022-06-16 20:56:25",
+        "MixIndex": "09"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\Holland\\celebrate\\Groede_2022_02b66d745c5d45e9b68c262efd545099_36.heic",
+        "Found": true,
+        "Format": "HEIC",
+        "DateTaken": "2022-06-16T18:08:12.000Z",
+        "ComputedTimestamp": "2022-06-16 20:08:12",
+        "MixIndex": "10"
+      }
+    ],
+    "FileCount": 10,
+    "ErrorCount": 0
+  },
+  {
+    "Name": "foto",
+    "Path": "C:/Holland/foto",
+    "Files": [],
+    "FileInfos": [],
+    "FileCount": 0,
+    "ErrorCount": 0
+  },
+  {
+    "Name": "gopro",
+    "Path": "C:/Holland/gopro",
+    "Files": [],
+    "FileInfos": [],
+    "FileCount": 0,
+    "ErrorCount": 0
+  }
+]

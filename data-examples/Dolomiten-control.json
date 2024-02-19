@@ -1,0 +1,42 @@
+{
+  "Name": "Dolomiten",
+  "Base_Directory": "C:/Users\\D022750\\OneDrive\\Public\\Dolomiten",
+  "Output_Mix_Path": "./mix",
+  "Output_Offset_Manual_Timestamp": "+0000-00-00 00:00:00",
+  "Convert_Heic_to_JPG": "true",
+  "Mix_Praefix": "Dolomiten_",
+  "Collections": [
+    {
+      "Name": "celeb",
+      "Directory": "./celeb",
+      "Timestamp_Type": "",
+      "Offset_Auto_Reference_Pic": "",
+      "Offset_Auto_Reference_Pic_Master": "",
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    },
+    {
+      "Name": "celebvor",
+      "Directory": "./celebvor",
+      "Timestamp_Type": "",
+      "Offset_Auto_Reference_Pic": "",
+      "Offset_Auto_Reference_Pic_Master": "",
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    },
+    {
+      "Name": "foto",
+      "Directory": "./foto",
+      "Timestamp_Type": "",
+      "Offset_Auto_Reference_Pic": "",
+      "Offset_Auto_Reference_Pic_Master": "",
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    },
+    {
+      "Name": "gopro",
+      "Directory": "./gopro",
+      "Timestamp_Type": "",
+      "Offset_Auto_Reference_Pic": "",
+      "Offset_Auto_Reference_Pic_Master": "",
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    }
+  ]
+}

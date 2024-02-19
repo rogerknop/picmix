@@ -1,0 +1,485 @@
+[
+  {
+    "Name": "GoPro",
+    "Path": "C:/xmas/GoPro",
+    "Files": [
+      "C:\\xmas\\GoPro\\GH010001.MP4",
+      "C:\\xmas\\GoPro\\1_referenz-gopro.JPG",
+      "C:\\xmas\\GoPro\\GH010002.MP4",
+      "C:\\xmas\\GoPro\\GH010003.MP4",
+      "C:\\xmas\\GoPro\\GH010009.MP4",
+      "C:\\xmas\\GoPro\\GH010010.MP4",
+      "C:\\xmas\\GoPro\\GH010016.MP4",
+      "C:\\xmas\\GoPro\\GH010019.MP4",
+      "C:\\xmas\\GoPro\\GOPR0005.JPG",
+      "C:\\xmas\\GoPro\\GOPR0006.JPG",
+      "C:\\xmas\\GoPro\\GOPR0008.JPG",
+      "C:\\xmas\\GoPro\\GOPR0011.JPG",
+      "C:\\xmas\\GoPro\\GOPR0012.JPG",
+      "C:\\xmas\\GoPro\\GOPR0013.JPG",
+      "C:\\xmas\\GoPro\\GOPR0017.JPG",
+      "C:\\xmas\\GoPro\\GOPR0015.JPG",
+      "C:\\xmas\\GoPro\\GOPR0018.JPG",
+      "C:\\xmas\\GoPro\\GX010022.MP4",
+      "C:\\xmas\\GoPro\\GOPR0021.JPG",
+      "C:\\xmas\\GoPro\\GX010023.MP4",
+      "C:\\xmas\\GoPro\\GOPR0020.JPG"
+    ],
+    "FileInfos": [
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GH010001.MP4",
+        "Found": true,
+        "Format": "MPEG-4",
+        "DateTaken": "UTC 2019-12-24 20:56:28",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 15:56:28"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\1_referenz-gopro.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-28 13:16:26",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-28 07:16:26"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GH010002.MP4",
+        "Found": true,
+        "Format": "MPEG-4",
+        "DateTaken": "UTC 2019-12-24 21:08:37",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 16:08:37"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GH010003.MP4",
+        "Found": true,
+        "Format": "MPEG-4",
+        "DateTaken": "UTC 2019-12-24 21:09:51",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 16:09:51"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GH010009.MP4",
+        "Found": true,
+        "Format": "MPEG-4",
+        "DateTaken": "UTC 2019-12-25 11:29:02",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 06:29:02"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GH010010.MP4",
+        "Found": true,
+        "Format": "MPEG-4",
+        "DateTaken": "UTC 2019-12-25 11:29:22",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 06:29:22"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GH010016.MP4",
+        "Found": true,
+        "Format": "MPEG-4",
+        "DateTaken": "UTC 2019-12-25 11:33:52",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 06:33:52"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GH010019.MP4",
+        "Found": true,
+        "Format": "MPEG-4",
+        "DateTaken": "UTC 2019-12-25 11:35:21",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 06:35:21"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GOPR0005.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 23:02:52",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 17:02:52"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GOPR0006.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 23:03:00",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 17:03:00"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GOPR0008.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 11:28:46",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 05:28:46"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GOPR0011.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 11:30:20",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 05:30:20"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GOPR0012.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 11:30:44",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 05:30:44"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GOPR0013.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 11:31:08",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 05:31:08"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GOPR0017.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 11:34:22",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 05:34:22"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GOPR0015.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 11:33:46",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 05:33:46"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GOPR0018.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 11:34:42",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 05:34:42"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GX010022.MP4",
+        "Found": true,
+        "Format": "MPEG-4",
+        "DateTaken": "UTC 2019-12-25 18:44:24",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 13:44:24"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GOPR0021.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 12:03:45",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 06:03:45"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GX010023.MP4",
+        "Found": true,
+        "Format": "MPEG-4",
+        "DateTaken": "UTC 2019-12-25 18:52:09",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 13:52:09"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\GoPro\\GOPR0020.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 11:45:05",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 05:45:05"
+      }
+    ],
+    "FileCount": 21,
+    "ErrorCount": 0
+  },
+  {
+    "Name": "Rogis Foto",
+    "Path": "C:/xmas/Rogis Foto",
+    "Files": [
+      "C:\\xmas\\Rogis Foto\\1_referenz-foto.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00691.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00693.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00692.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00694.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00695.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00696.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00697.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00698.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00699.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00700.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00701.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00702.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00704.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00705.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00706.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00707.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00708.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00709.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00710.JPG",
+      "C:\\xmas\\Rogis Foto\\DSC00703.JPG"
+    ],
+    "FileInfos": [
+      {
+        "debug": true,
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\1_referenz-foto.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-28 14:19:01",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-28 07:16:26"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00691.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 19:31:09",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 12:28:34"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00693.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 19:36:00",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 12:33:25"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00692.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 19:34:23",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 12:31:48"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00694.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 19:44:19",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 12:41:44"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00695.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 19:44:25",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 12:41:50"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00696.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 19:51:05",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 12:48:30"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00697.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 19:51:22",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 12:48:47"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00698.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 21:26:11",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 14:23:36"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00699.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 21:26:29",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 14:23:54"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00700.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 21:26:36",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 14:24:01"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00701.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 21:41:06",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 14:38:31"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00702.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 21:41:23",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 14:38:48"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00704.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 00:09:35",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 17:07:00"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00705.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 00:10:00",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 17:07:25"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00706.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 00:39:30",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 17:36:55"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00707.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 01:59:25",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 18:56:50"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00708.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 21:31:06",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 14:28:31"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00709.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 21:31:30",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 14:28:55"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00710.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-25 21:31:39",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-25 14:29:04"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\xmas\\Rogis Foto\\DSC00703.JPG",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2019-12-24 21:41:34",
+        "Timezone": "",
+        "ComputedTimestamp": "2019-12-24 14:38:59"
+      }
+    ],
+    "FileCount": 21,
+    "ErrorCount": 0
+  }
+]

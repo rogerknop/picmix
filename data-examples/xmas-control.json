@@ -1,0 +1,27 @@
+{
+  "Name": "xmas",
+  "Base_Directory": "C:/xmas",
+  "Output_Timezone": "(UTC-05:00) Bogota",
+  "Output_Mix_Path": "./mix",
+  "Mix_Praefix": "xmas_",
+  "Collections": [
+    {
+      "Name": "GoPro",
+      "Directory": "./GoPro",
+      "Timestamp_Type": "",
+      "Input_Timezone": "Europe/Berlin",
+      "Offset_Auto_Reference_Pic": "",
+      "Offset_Auto_Reference_Pic_Master": "",
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    },
+    {
+      "Name": "Rogis Foto",
+      "Directory": "./Rogis Foto",
+      "Timestamp_Type": "",
+      "Input_Timezone": "Europe/Berlin",
+      "Offset_Auto_Reference_Pic": "",
+      "Offset_Auto_Reference_Pic_Master": "",
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    }
+  ]
+}

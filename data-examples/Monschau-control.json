@@ -1,0 +1,46 @@
+{
+  "Name": "Monschau",
+  "Base_Directory": "C:/Monschau",
+  "Output_Timezone": "(UTC+01:00) Berlin",
+  "Output_Mix_Path": "./mix",
+  "Output_Offset_Manual_Timestamp": "-0000-00-00 01:03:00",
+  "Mix_Praefix": "Monschau_",
+  "Collections": [
+    {
+      "Name": "Gopro",
+      "Directory": "./Gopro",
+      "Timestamp_Type": "",
+      "Input_Timezone": "Europe/Berlin",
+      "Offset_Auto_Reference_Pic": "00.JPG",
+      "Offset_Auto_Reference_Pic_Master": "./SonyCam/00_gopro.JPG",
+      "Offset_Manual_Timestamp": "+0000-00-00 01:00:09"
+    },
+    {
+      "Name": "iPhone Rogi",
+      "Directory": "./iPhone Rogi",
+      "Timestamp_Type": "",
+      "Input_Timezone": "Europe/Berlin",
+      "Offset_Auto_Reference_Pic": "00.JPG",
+      "Offset_Auto_Reference_Pic_Master": "./SonyCam/00_iphone.JPG",
+      "Offset_Manual_Timestamp": "+0000-00-00 01:03:17"
+    },
+    {
+      "Name": "Moni",
+      "Directory": "./Moni",
+      "Timestamp_Type": "",
+      "Input_Timezone": "Europe/Berlin",
+      "Offset_Auto_Reference_Pic": "00.JPG",
+      "Offset_Auto_Reference_Pic_Master": "./SonyCam/00_moni.JPG",
+      "Offset_Manual_Timestamp": "+0000-00-00 01:03:15"
+    },
+    {
+      "Name": "SonyCam",
+      "Directory": "./SonyCam",
+      "Timestamp_Type": "",
+      "Input_Timezone": "Europe/Berlin",
+      "Offset_Auto_Reference_Pic": "",
+      "Offset_Auto_Reference_Pic_Master": "",
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "Name": "Stoupa2023",
+  "Base_Directory": "C:/Griechenland",
+  "Output_Mix_Path": "./mix",
+  "Output_Offset_Manual_Timestamp": "+0000-00-00 00:00:00",
+  "Convert_Heic_to_JPG": "true",
+  "Mix_Praefix": "Stoupa23_",
+  "Collections": [
+    {
+      "Name": "celebrate",
+      "Directory": "./celebrate",
+      "Timestamp_Type": "",
+      "Offset_Auto_Reference_Pic": "",
+      "Offset_Auto_Reference_Pic_Master": "",
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    },
+    {
+      "Name": "gopro",
+      "Directory": "./gopro",
+      "Timestamp_Type": "",
+      "Offset_Auto_Reference_Pic": "abgleich.jpg",
+      "Offset_Auto_Reference_Pic_Master": "./celebrate/abgleich.jpg",
+      "Offset_Manual_Timestamp": "-0000-00-00 00:00:21"
+    },
+    {
+      "Name": "lisa",
+      "Directory": "./lisa",
+      "Timestamp_Type": "",
+      "Offset_Auto_Reference_Pic": "",
+      "Offset_Auto_Reference_Pic_Master": "",
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    }
+  ]
+}

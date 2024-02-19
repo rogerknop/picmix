@@ -1,0 +1,18 @@
+{
+  "Name": "Schruns",
+  "Base_Directory": "C:/Schruns",
+  "Output_Mix_Path": "./mix",
+  "Output_Offset_Manual_Timestamp": "+0000-00-00 00:00:00",
+  "Convert_Heic_to_JPG": "true",
+  "Mix_Praefix": "Schruns_",
+  "Collections": [
+    {
+      "Name": "Celebrate",
+      "Directory": "./Celebrate",
+      "Timestamp_Type": "",
+      "Offset_Auto_Reference_Pic": "",
+      "Offset_Auto_Reference_Pic_Master": "",
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    }
+  ]
+}

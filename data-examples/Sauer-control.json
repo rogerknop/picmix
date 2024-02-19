@@ -1,0 +1,33 @@
+{
+  "Name": "Sauer",
+  "Base_Directory": "c:/sauer",
+  "Output_Mix_Path": "./mix",
+  "Output_Offset_Manual_Timestamp": "+0000-00-00 00:00:00",
+  "Mix_Praefix": "Sauer_",
+  "Collections": [
+    {
+      "Name": "gopro",
+      "Directory": "./gopro",
+      "Timestamp_Type": "",
+      "Offset_Auto_Reference_Pic": "gopro-handy.JPG",
+      "Offset_Auto_Reference_Pic_Master": "./leon/handy-gopro.jpg",
+      "Offset_Manual_Timestamp": "-0000-00-00 00:00:35"
+    },
+    {
+      "Name": "leon",
+      "Directory": "./leon",
+      "Timestamp_Type": "",
+      "Offset_Auto_Reference_Pic": "",
+      "Offset_Auto_Reference_Pic_Master": "",
+      "Offset_Manual_Timestamp": "+0000-00-00 00:00:00"
+    },
+    {
+      "Name": "sony",
+      "Directory": "./sony",
+      "Timestamp_Type": "",
+      "Offset_Auto_Reference_Pic": "sony-handy.JPG",
+      "Offset_Auto_Reference_Pic_Master": "./leon/handy-sony.jpg",
+      "Offset_Manual_Timestamp": "-0000-00-00 00:03:40"
+    }
+  ]
+}

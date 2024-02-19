@@ -1,0 +1,34 @@
+[
+  {
+    "Name": "test",
+    "Path": "C:/picmix/test",
+    "Files": [
+      "C:\\picmix\\test\\p1.heic",
+      "C:\\picmix\\test\\p2.jpeg"
+    ],
+    "FileInfos": [
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\picmix\\test\\p1.heic",
+        "Found": true,
+        "Format": "HEIC",
+        "DateTaken": "2023-08-10T17:57:10.000Z",
+        "ComputedTimestamp": "2023-08-10 19:57:10",
+        "MixIndex": "1"
+      },
+      {
+        "UseDateTaken": false,
+        "Status": "OK",
+        "Filename": "C:\\picmix\\test\\p2.jpeg",
+        "Found": true,
+        "Format": "JPEG",
+        "DateTaken": "2023-08-11 14:21:33",
+        "ComputedTimestamp": "2023-08-11 14:21:33",
+        "MixIndex": "2"
+      }
+    ],
+    "FileCount": 2,
+    "ErrorCount": 0
+  }
+]
