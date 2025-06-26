@@ -25,6 +25,7 @@ module.exports = {
         "Output_Mix_Path": "./mix",
         "Output_Offset_Manual_Timestamp": "+0000-00-00 00:00:00",   
         "Convert_Heic_to_JPG": "true",
+        "Copy_Error_Files": "true",
         "Mix_Praefix": "TestMix_"
     },
     
@@ -162,6 +163,40 @@ module.exports = {
             }
             console.log("\nDie Datendatei '" + file + "' wurde erstellt!");
         }); 
+    },
+
+    timestamp2string: function(timestamp) {
+        let date;
+
+        if (timestamp instanceof Date) {
+            date = timestamp;
+        } else if (typeof timestamp === 'string' || typeof timestamp === 'number') {
+            const num = Number(timestamp);
+            if (!isNaN(num)) {
+            // UNIX timestamp in Sekunden oder Millisekunden
+            date = num < 1e12 ? new Date(num * 1000) : new Date(num);
+            } else {
+            // Versuche ISO-String
+            date = new Date(timestamp);
+            }
+        } else {
+            throw new Error('Ungültiger Timestamp-Typ');
+        }
+
+        if (isNaN(date)) {
+            throw new Error('Ungültiger Timestamp-Wert');
+        }
+
+        const pad = (n) => n.toString().padStart(2, '0');
+
+        const year = date.getFullYear();
+        const month = pad(date.getMonth() + 1);
+        const day = pad(date.getDate());
+        const hours = pad(date.getHours());
+        const minutes = pad(date.getMinutes());
+        const seconds = pad(date.getSeconds());
+
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     },
 
     minutes2seconds : function(minutes) { return Math.floor(minutes * 60);  },

@@ -49,6 +49,7 @@ Je nach Konfiguration *Convert_Heic_to_JPG* werden die HEIC Dateien in JPG konve
 | Output_Mix_Path                | Zielverzeichnis, in das alle Dateien umbenannt kopiert werden
 | Output_Offset_Manual_Timestamp | Offset für alle Dateien, was am Ende berechnet wird. Hilfreich, wenn das Referenzbild des Masters die falsche Zeit hat.
 | Convert_Heic_to_JPG            | true => Heic wird nicht kopiert, sondern konvertiert in JPG
+| Copy_Error_Files               | true => Fehlerhafte Dateien werden mit Timestamp 0 kopiert / false => Fehlerhafte Dateien werden ignoriert
 | Mix_Praefix                    | Präfix, welches vor alle Dateinamen vorangestellt wird
 | Collections                    | Liste mit allen Kollektionen (Details im nächsten Kapitel)
 

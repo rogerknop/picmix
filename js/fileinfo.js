@@ -7,6 +7,7 @@ const fs = require('fs-extra')
 const Mediainfo = require('mediainfo-wrapper');
 const ExifImage = require('exif').ExifImage;
 const exifr = require('exifr');
+const path = require('path');
 
 module.exports = {
     //****************************************************************************************************
@@ -52,8 +53,15 @@ module.exports = {
             return fileInfo;
         }
 
-        if (mediaInfo && mediaInfo.general && mediaInfo.general.commercial_name && mediaInfo.general.commercial_name[0]) {
-            fileInfo.Format = mediaInfo.general.commercial_name[0].toUpperCase();
+        //if (mediaInfo && mediaInfo.details && mediaInfo.details.commercial_name && mediaInfo.details.commercial_name[0]) {
+        //    fileInfo.Format = mediaInfo.details.commercial_name[0].toUpperCase();
+        //}
+
+        if (mediaInfo && mediaInfo.details && mediaInfo.details.commercial_name && mediaInfo.details.commercial_name) {
+            fileInfo.Format = mediaInfo.details.commercial_name.toUpperCase();
+        }
+        else {
+            fileInfo.Format = path.extname(filename).slice(1).toUpperCase();
         }
 
         if (fileInfo.Format == "") {
@@ -70,6 +78,10 @@ module.exports = {
             }
             
             if (fileInfo.Format == "JPEG") {
+                return getJpegInfo(mediaInfo, fileInfo);
+            }    
+            
+            if (fileInfo.Format == "PNG") {
                 return getJpegInfo(mediaInfo, fileInfo);
             }    
             
@@ -108,10 +120,23 @@ module.exports = {
 
 //****************************************************************************************************
 function globalTimestampChecks(fileInfo) {
+    if (!fileInfo.DateTaken || (fileInfo.DateTaken === "")) {
+        //Fallback Erstellungsdatum nutzen
+        fileInfo.DateTaken = "";
+        try {
+            const stats = fs.statSync(fileInfo.Filename);
+            fileInfo.DateTaken = Globals.timestamp2string(stats.birthtime);
+            fileInfo.Status = Globals.status.ok;
+        } catch (err) {
+            // DateTaken bleibt leer und Error bleibt bestehen
+        }
+    }
+
     // Format yyyy:mm:dd ändern in yyyy-mm-dd
     if (fileInfo.DateTaken) { 
         fileInfo.DateTaken = fileInfo.DateTaken.replace(/(\d{4}):(\d{2}):(\d{2})/g, '$1-$2-$3')
     }
+
     
     return fileInfo;
 }
@@ -173,13 +198,13 @@ async function getHeicInfo(mediaInfo, fileInfo) {
 
 //****************************************************************************************************
 function getGifInfo(mediaInfo, fileInfo) {
-    fileInfo.DateTaken = mediaInfo.general.file_last_modification_date[0];
+    fileInfo.DateTaken = mediaInfo.details.file_last_modification_date[0];
     return globalTimestampChecks(fileInfo);
 }
 
 //****************************************************************************************************
 function getBdavInfo(mediaInfo, fileInfo) {
-    fileInfo.DateTaken = mediaInfo.general.file_last_modification_date;
+    fileInfo.DateTaken = mediaInfo.details.file_last_modification_date;
     return globalTimestampChecks(fileInfo);
 }
 

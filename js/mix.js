@@ -95,7 +95,13 @@ async function mix() {
 
 //****************************************************************************************************
 async function copyFile(total, count, control, fileInfo) {
-    if ((fileInfo.Status !== Globals.status.ok) || (fileInfo.ComputedTimestamp.length != 19)) { return; }
+    if ((fileInfo.Status !== Globals.status.ok) || (fileInfo.ComputedTimestamp.length != 19)) { 
+        if (control["Copy_Error_Files"] != "true") { 
+            return false; 
+        }
+        //Fehlerhafte Dateien trotzdem kopieren mit Timestamp 0000-00-00 00:00:00
+        fileInfo.ComputedTimestamp = "0000-00-00 00:00:00";
+    }
 
     var source = fileInfo.Filename;
     var destination = control.Base_Directory + "/" + control.Output_Mix_Path + "/" + control.Mix_Praefix;

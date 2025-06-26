@@ -28,7 +28,7 @@
     "heic-convert": "^1.2.4",
     "inquirer": "^7.0.0",
     "inquirer-select-directory": "^1.2.0",
-    "mediainfo-wrapper": "^1.2.0",
+    "mediainfo-wrapper": "^0.0.3",
     "moment-timezone": "^0.5.35",
     "recursive-readdir": "^2.2.2",
     "timezonelist-js": "^0.1.3"
