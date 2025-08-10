@@ -154,7 +154,12 @@ function getDefaultInfo(mediaInfo, fileInfo) {
         fileInfo.DateTaken = fileInfo.DateTaken.replace("UTC ", "");
     }
     else {
+      if ((mediaInfo.details) && (mediaInfo.details.tagged_date)) {
+        fileInfo.DateTaken = mediaInfo.details.tagged_date.replace("UTC ", "");
+      }
+      else {   
         fileInfo.Status = Globals.status.timstampNotFound
+      }           
     }           
     return globalTimestampChecks(fileInfo);
 }
