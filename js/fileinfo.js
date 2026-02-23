@@ -154,12 +154,24 @@ function getDefaultInfo(mediaInfo, fileInfo) {
         fileInfo.DateTaken = fileInfo.DateTaken.replace("UTC ", "");
     }
     else {
-      if ((mediaInfo.details) && (mediaInfo.details.tagged_date)) {
-        fileInfo.DateTaken = mediaInfo.details.tagged_date.replace("UTC ", "");
+      if (mediaInfo.details?.comapplequicktimecreationdate) {
+        const appleTimestamp = mediaInfo.details.comapplequicktimecreationdate;
+        // Zuerst den Offset korrigieren: +0300 → +03:00
+        const corrected = appleTimestamp.replace(/([+-]\d{2})(\d{2})$/, '$1:$2');
+        // In ein Date-Objekt umwandeln
+        const date = new Date(corrected);
+        // Datum und Uhrzeit extrahieren
+        const formatted = date.toISOString().replace('T', ' ').substring(0, 19);
+        fileInfo.DateTaken = formatted;
       }
-      else {   
-        fileInfo.Status = Globals.status.timstampNotFound
-      }           
+      else {
+          if ((mediaInfo.details) && (mediaInfo.details.tagged_date)) {
+              fileInfo.DateTaken = mediaInfo.details.tagged_date.replace("UTC ", "");
+            }
+            else {   
+                fileInfo.Status = Globals.status.timstampNotFound
+            }           
+        }
     }           
     return globalTimestampChecks(fileInfo);
 }
