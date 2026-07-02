@@ -249,6 +249,7 @@ async function getExif(filename) {
 }
 
 //****************************************************************************************************
+/*
 async function getExifr(filename) {
     let exifPromise = new Promise((resolve, reject) => {
         try {
@@ -264,4 +265,14 @@ async function getExifr(filename) {
     
     let exifData = await exifPromise; // wait until the promise resolves (*)
     return exifData;
+}
+    */
+async function getExifr(filename) {
+    try {
+        const exifData = await exifr.parse(filename);
+        return exifData;
+    } catch (error) {
+        //console.log('Error: ' + error.message);
+        return null;
+    }
 }
