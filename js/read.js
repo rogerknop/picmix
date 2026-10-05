@@ -9,7 +9,6 @@ const colors = require('colors');
 
 const fs = require('fs-extra')
 const clearConsole = require('clear-any-console');
-const drivelist = require('fs-hard-drive').lsDevices;
 var { from } = require('rxjs');
 const cliProgress = require('cli-progress');
 
@@ -27,10 +26,7 @@ var BaseDirSelectionTypeDefault;
 async function main() {
   var allEvents = Globals.getAllEvents(true);
   
-  var drives = await drivelist();
-  drives = drives.map((record) => {
-    return record.caption;
-  });
+  var drives = getDrives();
 
   clearConsole();
   console.log('Willkommen zum PicMix Tooling zum Abmischen mehrere Foto/Video Kollektionen!');
@@ -248,6 +244,19 @@ async function finalizeConfig() {
   Globals.writeEventControl(control);
   Globals.writeAppConfig(appConfig);
 
+}
+
+//****************************************************************************************************
+// Laufwerke A: bis Z: ermitteln (ohne wmic, das unter Windows 11 nicht mehr verfügbar ist)
+function getDrives() {
+  var drives = [];
+  for (var code = 65; code <= 90; code++) {
+    var drive = String.fromCharCode(code) + ':';
+    if (fs.existsSync(drive + '/')) {
+      drives.push(drive);
+    }
+  }
+  return drives;
 }
 
 //****************************************************************************************************
